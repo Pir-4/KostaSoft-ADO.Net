@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,29 +10,72 @@ namespace DB
 {
     public class DbDriver : IDisposable
     {
-        private SqlConnection cn;
+        private SqlConnection connect;
 
         public DbDriver()
         {
-            cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source=KARTAVOST-PC\MSSQLSERVER2;Initial Catalog=TestDB;" +
+            connect = new SqlConnection();
+            connect.ConnectionString = @"Data Source=KARTAVOST-PC\MSSQLSERVER2;Initial Catalog=TestDB;" +
                                   "Integrated Security=SSPI;Pooling=False";
+        }
+
+        public DataTable ExecuteReader(string query)
+        {
+            try
+            {
+                connect.Open();
+
+                SqlCommand command = new SqlCommand(query, connect);
+                DataSet ds = new DataSet();
+                SqlDataReader dr = command.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                return dt;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connect.Close();
+            }
+        }
+
+        public int ExecuteNonQuery(string query)
+        {
+            try
+            {
+                connect.Open();
+
+                SqlCommand command = new SqlCommand(query, connect);            
+                return command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                connect.Close();
+            }
         }
 
         public void Dispose()
         {
-            cn.Close();
-            cn.Dispose();
+            connect.Dispose();
         }
 
         public void Select()
         {
             try
             {
-                cn.Open();
+                connect.Open();
 
                 string query = "Select * From Department";
-                SqlCommand command = new SqlCommand(query, cn);
+                SqlCommand command = new SqlCommand(query, connect);
                 SqlDataReader dr = command.ExecuteReader();
                 while (dr.Read())
                 {
@@ -46,7 +90,7 @@ namespace DB
             }
             finally
             {
-                cn.Close();
+                connect.Close();
             }
 
         }
