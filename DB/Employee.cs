@@ -10,7 +10,7 @@ namespace DB
     /// <summary>
     /// Сотрудник
     /// </summary>
-    public class Employee
+    public class Employee : IEquatable<Employee>
     {
         public Employee()
         {
@@ -88,5 +88,14 @@ namespace DB
         /// должность
         /// </summary>
         public string Position { get; set; }
+
+        public bool Equals(Employee other)
+        {
+            return Id.Equals(other.Id) && DepartmentID.Equals(other.DepartmentID) &&
+                   SurName.Equals(other.SurName) && FirstName.Equals(other.FirstName) && Patronymic.Equals(other.Patronymic) &&
+                   DateOfBirth.Equals(other.DateOfBirth) &&
+                   DocSeries.Equals(other.DocSeries) && DocNumber.Equals(other.DocNumber) &&
+                   Position.Equals(other.Position);
+        }
     }
 }

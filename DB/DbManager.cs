@@ -14,7 +14,7 @@ namespace DB
         public List<Department> GetDepartments()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Department");
-            List <Department> result = new List<Department>();
+            List<Department> result = new List<Department>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Department(row));
 
@@ -51,14 +51,54 @@ namespace DB
             return result;
         }
 
+        /// <summary>
+        ///  Поучение сотрудника по его id
+        /// </summary>
+        /// <param name="id">id сотрудника</param>
+        /// <returns></returns>
+        public Employee GetEmployee(int id)
+        {
+            string query = String.Format("Select * From Empoyee where ID={0}", id);
+            DataTable dt = _driver.ExecuteReader(query);
+            return dt.Rows.Count > 0 ? new Employee(dt.Rows[0]) : null;
+        }
+
+        /// <summary>
+        /// Обновление полей сотрудника
+        /// </summary>
+        /// <param name="id">идентификатор сотрудника</param>
+        /// <param name="pars"> словарь где ключ-имя поля, значение-новое значение</param>
+        /// <returns>успешность операции</returns>
         public bool UpdateEmployee(int id, Dictionary<string, string> pars)
         {
             string query = "Update Empoyee Set ";
             IEnumerable<string> sets = pars.Select(kvp => String.Format("{0}='{1}'", kvp.Key, kvp.Value));
-            query += String.Join(", ",sets.ToList()) + String.Format(" where ID={0}",id);
+            query += String.Join(", ", sets.ToList()) + String.Format(" where ID={0}", id);
 
-            int res = _driver.ExecuteNonQuery(query);
-            return res != -1;
+            int result = _driver.ExecuteNonQuery(query);
+            return result != -1;
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            string query = String.Format("Delete Empoyee where ID={0}", id);
+            int result = _driver.ExecuteNonQuery(query);
+            return result != -1;
+        }
+
+        public bool InsertEmployee(Dictionary<string, string> pars)
+        {
+            string query = "Insert Into Empoyee ";
+            int id = Int32.Parse(pars["ID"]);
+            pars.Remove("ID");
+            List<string> keys = pars.Keys.ToList();
+            List<string> values = keys.Select(item => "'" + pars[item] + "'").ToList();
+
+            query += "(" + "ID, " + string.Join(", ", keys) + ")" +
+                     "Values (" + id+ ", " + string.Join(", ", values) + ")";
+
+            int result = _driver.ExecuteNonQuery(query);
+            return result != -1;
         }
     }
 }
