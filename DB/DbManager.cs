@@ -89,13 +89,14 @@ namespace DB
         public bool InsertEmployee(Dictionary<string, string> pars)
         {
             string query = "Insert Into Empoyee ";
-            int id = Int32.Parse(pars["ID"]);
-            pars.Remove("ID");
+            if (pars.ContainsKey("ID"))
+                pars.Remove("ID");
+
             List<string> keys = pars.Keys.ToList();
             List<string> values = keys.Select(item => "'" + pars[item] + "'").ToList();
 
-            query += "(" + "ID, " + string.Join(", ", keys) + ")" +
-                     "Values (" + id+ ", " + string.Join(", ", values) + ")";
+            query += "(" + string.Join(", ", keys) + ")" +
+                     "Values (" + string.Join(", ", values) + ")";
 
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
