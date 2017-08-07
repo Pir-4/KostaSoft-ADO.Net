@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,29 @@ namespace DB
     /// </summary>
     public class Employee
     {
+        public Employee()
+        {
+
+        }
+
+        public Employee(DataRow row)
+        {
+            Id = Int32.Parse(row["ID"].ToString());
+            DepartmentID = row["DepartmentID"].ToString();
+            SurName = row["SurName"].ToString();
+            FirstName = row["FirstName"].ToString();
+            Patronymic = row["Patronymic"].ToString();
+            DateOfBirth = DateTime.Parse(row["DateOfBirth"].ToString());
+            DocSeries = row["DocSeries"].ToString();
+            DocNumber = row["DocNumber"].ToString();
+            Position = row["Position"].ToString();
+        }
+
         /// <summary>
         /// Идентификатор сотрудника
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Идентификатор подразделения
         /// </summary>

@@ -26,7 +26,6 @@ namespace DB
                 connect.Open();
 
                 SqlCommand command = new SqlCommand(query, connect);
-                DataSet ds = new DataSet();
                 SqlDataReader dr = command.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(dr);
@@ -35,7 +34,7 @@ namespace DB
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                throw e;
             }
             finally
             {
@@ -55,7 +54,7 @@ namespace DB
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                throw e;
             }
             finally
             {

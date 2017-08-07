@@ -17,6 +17,17 @@ namespace DB
             List <Department> result = new List<Department>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Department(row));
+
+            return result;
+        }
+
+        public List<Employee> GetEmployee()
+        {
+            DataTable dt = _driver.ExecuteReader("Select * From Empoyee");
+            List<Employee> result = new List<Employee>();
+            foreach (DataRow row in dt.Rows)
+                result.Add(new Employee(row));
+
             return result;
         }
     }

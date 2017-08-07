@@ -16,5 +16,12 @@ namespace UnitTest
             List < Department > res= managet.GetDepartments();
             Assert.IsTrue(res.Count != 0);
         }
+
+        [TestMethod]
+        public void GetEmployeeTest()
+        {
+            List<Employee> res = managet.GetEmployee();
+            Assert.IsTrue(res.Count != 0);
+        }
     }
 }
