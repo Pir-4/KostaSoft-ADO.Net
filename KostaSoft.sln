@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KostaSoft", "KostaSoft\KostaSoft.csproj", "{DE2BC55C-73CD-421D-AAE8-6B79CD7FFB73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB", "DB\DB.csproj", "{A6A5C573-4428-42F3-ADC4-A22D8861F17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{6EC1230E-DB9A-456D-8BF0-3D070AF75BDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DE2BC55C-73CD-421D-AAE8-6B79CD7FFB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE2BC55C-73CD-421D-AAE8-6B79CD7FFB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE2BC55C-73CD-421D-AAE8-6B79CD7FFB73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A5C573-4428-42F3-ADC4-A22D8861F17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A5C573-4428-42F3-ADC4-A22D8861F17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A5C573-4428-42F3-ADC4-A22D8861F17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A5C573-4428-42F3-ADC4-A22D8861F17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC1230E-DB9A-456D-8BF0-3D070AF75BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC1230E-DB9A-456D-8BF0-3D070AF75BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC1230E-DB9A-456D-8BF0-3D070AF75BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC1230E-DB9A-456D-8BF0-3D070AF75BDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
