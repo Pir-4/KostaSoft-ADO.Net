@@ -67,32 +67,5 @@ namespace DB
             connect.Dispose();
         }
 
-        public void Select()
-        {
-            try
-            {
-                connect.Open();
-
-                string query = "Select * From Department";
-                SqlCommand command = new SqlCommand(query, connect);
-                SqlDataReader dr = command.ExecuteReader();
-                while (dr.Read())
-                {
-                   string st = String.Format("ID {0}, DepId {1}, Code {2}, Name {3}", dr["ID"], 
-                        dr["ParentDepartmentID"], dr["Code"], dr["Name"]);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                connect.Close();
-            }
-
-        }
-
     }
 }

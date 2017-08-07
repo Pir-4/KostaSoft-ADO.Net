@@ -58,7 +58,21 @@ namespace DB
         /// <summary>
         /// Дата рождения
         /// </summary>
-        public  DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        public int Age
+        {
+            get
+            {
+                DateTime dateNow = DateTime.Now;
+                int year = dateNow.Year - DateOfBirth.Year;
+                if (dateNow.Month < DateOfBirth.Month ||
+                    (DateOfBirth.Month == dateNow.Month && dateNow.Day < DateOfBirth.Day))
+                    year--;
+                return year;
+
+            }
+        }
 
         /// <summary>
         /// Серия документа

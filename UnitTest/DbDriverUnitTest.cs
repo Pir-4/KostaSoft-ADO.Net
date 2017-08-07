@@ -9,11 +9,6 @@ namespace UnitTest
     public class DbDriverUnitTest
     {
         private DbDriver driver = new DbDriver();
-        [TestMethod]
-        public void SelectTest()
-        {
-            driver.Select();
-        }
 
         [TestMethod]
         public void ExecuteReader()
