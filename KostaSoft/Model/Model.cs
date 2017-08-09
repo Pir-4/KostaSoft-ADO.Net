@@ -28,7 +28,7 @@ namespace KostaSoft.Model
         public void GetDepartaments()
         {
             builder.Sotring(manager.GetDepartments());
-            //updateTreeEventArgs.Departments = manager.GetDepartments().Select(item => item.Name).ToList();
+            updateTreeEventArgs.Root = builder.Root;
             modelHedlerUpdateDepartament.Invoke(this,updateTreeEventArgs);
         }
     }

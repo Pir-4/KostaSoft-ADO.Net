@@ -29,12 +29,35 @@ namespace KostaSoft
 
         public void UpdateDepartavents(IModel model, UpdateTreeEventArgs e)
         {
-            foreach (var item in e.Departments)
+            //this.OrgTree.Name = e.Root.Name;
+            TreeNode root = new TreeNode(e.Root.Name);
+            foreach (var child in e.Root.Children)
+            {
+                BuildTree(root, child);    
+            }
+            this.OrgTree.Nodes.Add(root);
+            /*foreach (var item in e.Departments)
             {
                 TreeNode tr = new TreeNode(item);
                 this.OrgTree.Nodes.Add(tr);
+            }*/
+
+        }
+
+        private void BuildTree(TreeNode parentNode, TreeItem item)
+        {
+            if (item.Children.Count == 0)
+            {
+                parentNode.Nodes.Add(new TreeNode(item.Name));
+                return ;
             }
-            
+
+            foreach (var child in item.Children)
+            {
+                TreeNode newNode = new TreeNode(child.Name);
+                BuildTree(newNode, child);
+                parentNode.Nodes.Add(newNode);
+            }
         }
     }
 }
