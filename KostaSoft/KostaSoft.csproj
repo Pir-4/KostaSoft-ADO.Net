@@ -54,6 +54,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\EventAgrs\UpdateTreeEventArgs.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\IModelObserver.cs" />
     <Compile Include="Model\Model.cs" />
@@ -84,7 +85,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DB\DB.csproj">
+      <Project>{a6a5c573-4428-42f3-adc4-a22d8861f17f}</Project>
+      <Name>DB</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

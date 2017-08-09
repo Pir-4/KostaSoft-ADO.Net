@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KostaSoft.Model;
 using  KostaSoft.Controller;
+using KostaSoft.Model.EventAgrs;
 
 namespace KostaSoft
 {
@@ -25,5 +26,15 @@ namespace KostaSoft
         }
 
         public IController Controller {  get; set; }
+
+        public void UpdateDepartavents(IModel model, UpdateTreeEventArgs e)
+        {
+            foreach (var item in e.Departments)
+            {
+                TreeNode tr = new TreeNode(item);
+                this.OrgTree.Nodes.Add(tr);
+            }
+            
+        }
     }
 }
