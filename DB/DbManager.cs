@@ -25,10 +25,10 @@ namespace DB
         /// Получение списка сотрудников всей организации
         /// </summary>
         /// <returns></returns>
-        public List<Employee> GetEmployee()
+        public List<IOrgItem> GetEmployee()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Empoyee");
-            List<Employee> result = new List<Employee>();
+            List<IOrgItem> result = new List<IOrgItem>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Employee(row));
 
