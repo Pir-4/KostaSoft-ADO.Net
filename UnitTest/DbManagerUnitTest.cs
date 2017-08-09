@@ -43,38 +43,38 @@ namespace UnitTest
         [TestMethod]
         public void GetEmployeeByDepartmentIDTest()
         {
-            List<Employee> res = managet.GetEmployee("fb9d1a43-5796-4190-abd4-39ffd8c87476");
+            List<Employee> res = managet.GetEmployee("0049AB7F-DB91-4C93-BFE9-B91D62F3FA17");
             Assert.IsTrue(res.Count != 0);
         }
 
         [TestMethod]
         public void GetEmployeeByIDTest()
         {
-            int id = 1;
-            Employee res = managet.GetEmployee(id);
-            Assert.IsTrue(res != null && res.Id == id);
+            Employee em = managet.GetEmployee()[0];
+            Employee res = managet.GetEmployee(em.Id);
+            Assert.IsTrue(res != null && res.Id == em.Id);
         }
 
         [TestMethod]
         public void UpdateEmployeeTest()
         {
-            int id = 1;
-            Employee control = managet.GetEmployee(id);
+            Employee em = managet.GetEmployee()[0];
+            Employee control = managet.GetEmployee(em.Id);
             Dictionary<string, string> pars = new Dictionary<string, string>();
             pars.Add("FirstName",control.FirstName+control.FirstName);
             pars.Add("Position", control.Position + control.Position);
-            Assert.IsTrue(managet.UpdateEmployee(id,pars));
+            Assert.IsTrue(managet.UpdateEmployee(em.Id, pars));
 
-            Employee updateItem = managet.GetEmployee(id);
+            Employee updateItem = managet.GetEmployee(em.Id);
 
             Assert.IsTrue(updateItem.FirstName.Equals(control.FirstName + control.FirstName));
             Assert.IsTrue(updateItem.Position.Equals(control.Position + control.Position));
             pars["FirstName"] = control.FirstName;
             pars["Position"] = control.Position;
 
-            Assert.IsTrue(managet.UpdateEmployee(id, pars));
+            Assert.IsTrue(managet.UpdateEmployee(em.Id, pars));
 
-            Employee result = managet.GetEmployee(id);
+            Employee result = managet.GetEmployee(em.Id);
             Assert.IsTrue(control.Equals(result));
         }
 
@@ -86,7 +86,7 @@ namespace UnitTest
             control.SurName = "test";
             control.FirstName = "test";
             control.Patronymic = "test";
-            control.DateOfBirth= DateTime.Now;
+            control.DateOfBirth = new DateTime(2017,3,12);
             control.DocSeries = "test";
             control.DocNumber = "test";
             control.Position = "test";
@@ -95,7 +95,8 @@ namespace UnitTest
             Assert.IsTrue(list.Count >0);
             Employee result = managet.GetEmployee(list[0].Id);
             control.Id = result.Id;
-            bool t = control.Equals(result);
+            //bool t = ;
+            Assert.IsTrue(control.Equals(result));
             Assert.IsTrue(managet.DeleteEmployee(result.Id));
             Assert.IsNull(managet.GetEmployee(result.Id));
         }
