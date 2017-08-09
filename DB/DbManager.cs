@@ -11,10 +11,10 @@ namespace DB
     {
         private DbDriver _driver = new DbDriver();
 
-        public List<Department> GetDepartments()
+        public List<IOrgItem> GetDepartments()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Department");
-            List<Department> result = new List<Department>();
+            List<IOrgItem> result = new List<IOrgItem>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Department(row));
 

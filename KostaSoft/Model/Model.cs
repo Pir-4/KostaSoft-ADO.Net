@@ -18,6 +18,8 @@ namespace KostaSoft.Model
         private event ModelUpdateHandler<Model> modelHedlerUpdateDepartament;
 
        DbManager manager = new DbManager();
+        OrgBuilder builder = new OrgBuilder();
+
         public void attach(IModelObserver imo)
         {
             modelHedlerUpdateDepartament += new ModelUpdateHandler<Model>(imo.UpdateDepartavents);
@@ -25,7 +27,8 @@ namespace KostaSoft.Model
 
         public void GetDepartaments()
         {
-            updateTreeEventArgs.Departments = manager.GetDepartments().Select(item => item.Name).ToList();
+            builder.Sotring(manager.GetDepartments());
+            //updateTreeEventArgs.Departments = manager.GetDepartments().Select(item => item.Name).ToList();
             modelHedlerUpdateDepartament.Invoke(this,updateTreeEventArgs);
         }
     }

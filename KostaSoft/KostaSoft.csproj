@@ -58,6 +58,7 @@
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\IModelObserver.cs" />
     <Compile Include="Model\Model.cs" />
+    <Compile Include="Model\OrgBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

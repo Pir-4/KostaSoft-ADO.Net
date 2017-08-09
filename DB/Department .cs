@@ -10,7 +10,7 @@ namespace DB
     /// <summary>
     /// Подражделение
     /// </summary>
-    public class Department
+    public class Department : IOrgItem
     {
         public Department()
         {
@@ -44,5 +44,23 @@ namespace DB
         /// наименование
         /// </summary>
         public string Name { get; set; }
+
+        public string ItemId
+        {
+            get { return Id; }
+        }
+
+        public bool Equals(IOrgItem other)
+        {
+            if (other is Department)
+            {
+                Department otherDepartment = other as Department;
+
+                return Id.Equals(otherDepartment.Id) && ParentDepartmentID.Equals(otherDepartment.ParentDepartmentID) &&
+                       Name.Equals(otherDepartment.Name) &&
+                       Code.Equals(otherDepartment.Code);
+                }
+            return false;
+        }
     }
 }

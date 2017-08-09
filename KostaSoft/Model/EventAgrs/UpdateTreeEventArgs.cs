@@ -9,6 +9,6 @@ namespace KostaSoft.Model.EventAgrs
 {
     public class UpdateTreeEventArgs : EventArgs
     {
-        public List<string> Departments { get; set; }
+        public TreeItem Root { get; set; }
     }
 }

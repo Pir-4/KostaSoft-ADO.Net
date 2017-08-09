@@ -10,7 +10,7 @@ namespace DB
     /// <summary>
     /// Сотрудник
     /// </summary>
-    public class Employee : IEquatable<Employee>
+    public class Employee : IOrgItem
     {
         public Employee()
         {
@@ -89,13 +89,35 @@ namespace DB
         /// </summary>
         public string Position { get; set; }
 
-        public bool Equals(Employee other)
+        public string ParentDepartmentID
         {
-            return Id.Equals(other.Id) && DepartmentID.Equals(other.DepartmentID) &&
-                   SurName.Equals(other.SurName) && FirstName.Equals(other.FirstName) && Patronymic.Equals(other.Patronymic) &&
-                   DateOfBirth.Equals(other.DateOfBirth) &&
-                   DocSeries.Equals(other.DocSeries) && DocNumber.Equals(other.DocNumber) &&
-                   Position.Equals(other.Position);
+            get { return DepartmentID; }
+        }
+
+        public string Name
+        {
+            get { return String.Join(" ", new List<string> { SurName, FirstName, Patronymic }); }
+        }
+
+        public string ItemId
+        {
+            get { return Id.ToString(); }
+        }
+
+        public bool Equals(IOrgItem other)
+        {
+            if (other is Employee)
+            {
+                Employee otherEmployee = other as Employee;
+                
+                return Id.Equals(otherEmployee.Id) && DepartmentID.Equals(otherEmployee.DepartmentID) &&
+                       SurName.Equals(otherEmployee.SurName) && FirstName.Equals(otherEmployee.FirstName) &&
+                       Patronymic.Equals(otherEmployee.Patronymic) &&
+                       DateOfBirth.Equals(otherEmployee.DateOfBirth) &&
+                       DocSeries.Equals(otherEmployee.DocSeries) && DocNumber.Equals(otherEmployee.DocNumber) &&
+                       Position.Equals(otherEmployee.Position);
+            }
+            return false;
         }
     }
 }
