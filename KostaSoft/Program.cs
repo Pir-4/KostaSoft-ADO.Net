@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using KostaSoft.Model;
+using KostaSoft.Controller;
 
 namespace KostaSoft
 {
@@ -16,7 +18,13 @@ namespace KostaSoft
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            FormMain view = new FormMain();
+            IModel model = new Model.Model();
+            model.attach(view);
+            view.Controller = new Controller.Controller(model);
+
+            Application.Run(view);
         }
     }
 }
