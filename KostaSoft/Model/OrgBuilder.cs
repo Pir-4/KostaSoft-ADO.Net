@@ -8,7 +8,9 @@ using DB;
 
 namespace KostaSoft.Model
 {
-
+    /// <summary>
+    /// Строит дерево объектов.(структуру организации)
+    /// </summary>
     public class OrgBuilder
     {
         private TreeItem root;
@@ -19,6 +21,10 @@ namespace KostaSoft.Model
             private set { root = value; }
         }
 
+        /// <summary>
+        /// Функция сортировки элементов в дерево
+        /// </summary>
+        /// <param name="input">списко эементов, которые необходимо отсортировать</param>
         public void Sotring(List<IOrgItem> input)
         {
             List<IOrgItem> excluded = new List<IOrgItem>();
@@ -54,7 +60,13 @@ namespace KostaSoft.Model
                 }
             }
         }
-
+        /// <summary>
+        /// Осуществлет поиск родительского элемента
+        /// рекурсивна
+        /// </summary>
+        /// <param name="item">Элемент с которого осуществляется поиск</param>
+        /// <param name="org">Элемент для которог ищется родитель</param>
+        /// <returns>null - если родитель не найден. TreeItem - рожительский элемент</returns>
         private TreeItem SearchItem(TreeItem item, IOrgItem org)
         {
             if (item == null)

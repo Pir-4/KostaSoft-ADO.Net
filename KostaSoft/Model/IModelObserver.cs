@@ -9,6 +9,8 @@ namespace KostaSoft.Model
 {
     public interface IModelObserver
     {
-        void UpdateDepartavents(IModel model, UpdateTreeEventArgs e);
+        void UpdateTree(IModel model, UpdateTreeEventArgs e);
+
+        void DisplayItem(IModel model, UpdateTreeEventArgs e);
     }
 }

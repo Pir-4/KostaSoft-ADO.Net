@@ -22,33 +22,56 @@ namespace KostaSoft
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            Controller.GetDepartaments();
+            Controller.UpdateTree();
         }
 
-        public IController Controller {  get; set; }
+        public IController Controller { get; set; }
 
-        public void UpdateDepartavents(IModel model, UpdateTreeEventArgs e)
+        public void UpdateTree(IModel model, UpdateTreeEventArgs e)
         {
             TreeNode root = new TreeNode(e.Root.Name);
             foreach (var child in e.Root.Children)
-            {
-                root.Nodes.Add(BuildTree(child));    
-            }
+                root.Nodes.Add(BuildTree(child));
+
             this.OrgTree.Nodes.Add(root);
 
         }
 
-        private TreeNode BuildTree( TreeItem item)
+        /// <summary>
+        /// Посроенени дерева для отображения
+        /// </summary>
+        /// <param name="item">Элемент входного дерева</param>
+        /// <returns>TreeNode</returns>
+        private TreeNode BuildTree(TreeItem item)
         {
             if (item.Children.Count == 0)
                 return new TreeNode(item.Name);
-            
+
             TreeNode newNode = new TreeNode(item.Name);
             foreach (var child in item.Children)
-            {
                 newNode.Nodes.Add(BuildTree(child));
-            }
+
             return newNode;
         }
+
+
+        public void DisplayItem(IModel model, UpdateTreeEventArgs e)
+        {
+            if (e.DisplayDep != null)
+            {
+                ;
+            }
+            else if(e.DisplyEmp != null)
+            {
+                ;
+            }
+        }
+
+        private void OrgTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
+        }
+
+        
     }
 }

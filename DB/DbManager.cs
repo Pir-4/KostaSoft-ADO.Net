@@ -11,10 +11,10 @@ namespace DB
     {
         private DbDriver _driver = new DbDriver();
 
-        public List<IOrgItem> GetDepartments()
+        public List<Department> GetDepartments()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Department");
-            List<IOrgItem> result = new List<IOrgItem>();
+            List<Department> result = new List<Department>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Department(row));
 
@@ -25,10 +25,10 @@ namespace DB
         /// Получение списка сотрудников всей организации
         /// </summary>
         /// <returns></returns>
-        public List<IOrgItem> GetEmployee()
+        public List<Employee> GetEmployee()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Empoyee");
-            List<IOrgItem> result = new List<IOrgItem>();
+            List<Employee> result = new List<Employee>();
             foreach (DataRow row in dt.Rows)
                 result.Add(new Employee(row));
 

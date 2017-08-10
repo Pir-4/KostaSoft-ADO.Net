@@ -16,9 +16,14 @@ namespace KostaSoft.Controller
             this.model = model;
         }
 
-        public void GetDepartaments()
+        public void UpdateTree()
         {
-            model.GetDepartaments();
+            model.UpdateTree();
+        }
+
+        public void GetInfoItem(string name)
+        {
+            model.GetInfoItem(name);
         }
     }
 }

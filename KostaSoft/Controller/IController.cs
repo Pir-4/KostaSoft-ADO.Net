@@ -2,6 +2,7 @@
 {
     public interface IController
     {
-        void GetDepartaments();
+        void UpdateTree();
+        void GetInfoItem(string name);
     }
 }

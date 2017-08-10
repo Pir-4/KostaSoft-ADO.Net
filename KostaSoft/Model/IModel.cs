@@ -10,6 +10,8 @@ namespace KostaSoft.Model
     {
         void attach(IModelObserver imo);
 
-        void GetDepartaments();
+        void UpdateTree();
+
+        void GetInfoItem(string name);
     }
 }

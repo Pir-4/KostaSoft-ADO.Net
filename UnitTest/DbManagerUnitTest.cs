@@ -29,7 +29,7 @@ namespace UnitTest
         [TestMethod]
         public void GetDepartmentsTest()
         {
-            List<IOrgItem> res = managet.GetDepartments();
+            List<Department> res = managet.GetDepartments();
             Assert.IsTrue(res.Count != 0);
         }
 

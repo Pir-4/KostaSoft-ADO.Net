@@ -10,5 +10,9 @@ namespace KostaSoft.Model.EventAgrs
     public class UpdateTreeEventArgs : EventArgs
     {
         public TreeItem Root { get; set; }
+
+        public Department DisplayDep { get; set; }
+
+        public Employee DisplyEmp { get; set; }
     }
 }

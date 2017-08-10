@@ -33,16 +33,17 @@
             // 
             // OrgTree
             // 
-            this.OrgTree.Location = new System.Drawing.Point(2, 117);
+            this.OrgTree.Location = new System.Drawing.Point(3, 2);
             this.OrgTree.Name = "OrgTree";
             this.OrgTree.Size = new System.Drawing.Size(279, 223);
             this.OrgTree.TabIndex = 0;
+            this.OrgTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OrgTree_AfterSelect);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 340);
+            this.ClientSize = new System.Drawing.Size(603, 255);
             this.Controls.Add(this.OrgTree);
             this.Name = "FormMain";
             this.Text = "Form1";
