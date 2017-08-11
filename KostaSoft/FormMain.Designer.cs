@@ -32,9 +32,9 @@
             this.labelDep = new System.Windows.Forms.Label();
             this.textBoxDepCode = new System.Windows.Forms.TextBox();
             this.labelDepCode = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBoxDepName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxDepNames = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // OrgTree
@@ -58,7 +58,7 @@
             // 
             this.textBoxDepCode.Location = new System.Drawing.Point(334, 42);
             this.textBoxDepCode.Name = "textBoxDepCode";
-            this.textBoxDepCode.Size = new System.Drawing.Size(120, 20);
+            this.textBoxDepCode.Size = new System.Drawing.Size(61, 20);
             this.textBoxDepCode.TabIndex = 2;
             // 
             // labelDepCode
@@ -70,29 +70,29 @@
             this.labelDepCode.TabIndex = 3;
             this.labelDepCode.Text = "Код";
             // 
-            // textBox1
+            // textBoxDepName
             // 
-            this.textBox1.Location = new System.Drawing.Point(334, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 20);
-            this.textBox1.TabIndex = 4;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(304, 104);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(150, 30);
-            this.listBox1.TabIndex = 6;
+            this.textBoxDepName.Location = new System.Drawing.Point(334, 10);
+            this.textBoxDepName.Name = "textBoxDepName";
+            this.textBoxDepName.Size = new System.Drawing.Size(221, 20);
+            this.textBoxDepName.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(301, 76);
+            this.label1.Location = new System.Drawing.Point(301, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Роительское подразделение";
+            // 
+            // comboBoxDepNames
+            // 
+            this.comboBoxDepNames.FormattingEnabled = true;
+            this.comboBoxDepNames.Location = new System.Drawing.Point(304, 91);
+            this.comboBoxDepNames.Name = "comboBoxDepNames";
+            this.comboBoxDepNames.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxDepNames.TabIndex = 8;
             // 
             // FormMain
             // 
@@ -100,9 +100,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(774, 255);
+            this.Controls.Add(this.comboBoxDepNames);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxDepName);
             this.Controls.Add(this.labelDepCode);
             this.Controls.Add(this.textBoxDepCode);
             this.Controls.Add(this.labelDep);
@@ -121,9 +121,9 @@
         private System.Windows.Forms.Label labelDep;
         private System.Windows.Forms.TextBox textBoxDepCode;
         private System.Windows.Forms.Label labelDepCode;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.TextBox textBoxDepName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxDepNames;
     }
 }
 

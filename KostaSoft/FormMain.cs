@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KostaSoft.Model;
-using  KostaSoft.Controller;
+using KostaSoft.Controller;
 using KostaSoft.Model.EventAgrs;
 
 namespace KostaSoft
@@ -55,16 +55,21 @@ namespace KostaSoft
         }
 
 
-        public void DisplayItem(IModel model, UpdateTreeEventArgs e)
+        public void DepartmentItem(IModel model, DepartmentEventsArgs e)
         {
-            if (e.DisplayDep != null)
-            {
-                ;
-            }
-            else if(e.DisplyEmp != null)
-            {
-                ;
-            }
+
+            this.textBoxDepName.Text = e.DisplayDep.Name;
+            this.textBoxDepCode.Text = e.DisplayDep.Code;
+            foreach (var item in e.DepNameList)
+                comboBoxDepNames.Items.Add(item);
+
+            comboBoxDepNames.Text = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "";
+            this.comboBoxDepNames.Enabled = e.EnebleListBox;
+        }
+
+        public void EmployeeEItem(IModel model, EmployeeEventArgs e)
+        {
+            
         }
 
         private void OrgTree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -72,6 +77,6 @@ namespace KostaSoft
             Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
         }
 
-        
+
     }
 }

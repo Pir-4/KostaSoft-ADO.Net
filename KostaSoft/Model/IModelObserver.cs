@@ -11,6 +11,8 @@ namespace KostaSoft.Model
     {
         void UpdateTree(IModel model, UpdateTreeEventArgs e);
 
-        void DisplayItem(IModel model, UpdateTreeEventArgs e);
+        void DepartmentItem(IModel model, DepartmentEventsArgs e);
+
+        void EmployeeEItem(IModel model, EmployeeEventArgs e);
     }
 }

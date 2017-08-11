@@ -54,6 +54,8 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\EventAgrs\DepartmentEventsArgs.cs" />
+    <Compile Include="Model\EventAgrs\EmployeeEventArgs.cs" />
     <Compile Include="Model\EventAgrs\UpdateTreeEventArgs.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\IModelObserver.cs" />
