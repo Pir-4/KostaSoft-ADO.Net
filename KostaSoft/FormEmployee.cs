@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,15 @@ using System.Windows.Forms;
 using DB;
 using KostaSoft.Controller;
 using KostaSoft.Model.EventAgrs;
+using KostaSoft.Model.Command;
 
 namespace KostaSoft
 {
     public partial class FormEmployee : Form
     {
+        EmployeeCommand command = new EmployeeCommand();
+        private const string ERROR_AGE = "-:-";
+
         public FormEmployee()
         {
             InitializeComponent();
@@ -26,6 +31,7 @@ namespace KostaSoft
         private void FormEmployee_Load(object sender, EventArgs e)
         {
             Employee emp = EmployeeEvent.DisplayEmp;
+            command.Id = emp.Id;
 
             this.Text = emp.Name;
             this.textBoxSurNameEmp.Text = emp.SurName;
@@ -42,6 +48,8 @@ namespace KostaSoft
 
             this.textBoxDocSeries.Text = emp.DocSeries;
             this.textBoxDocNumber.Text = emp.DocNumber;
+
+           EnebleButtonsave();
         }
 
         public EmployeeEventArgs EmployeeEvent { get; set; }
@@ -59,6 +67,115 @@ namespace KostaSoft
             return year.ToString();
 
 
+        }
+
+        private void textBoxSurNameEmp_TextChanged(object sender, EventArgs e)
+        {
+           // EnebleButtonsave();
+        }
+
+        private void textBoxFirstNameEmp_TextChanged(object sender, EventArgs e)
+        {
+
+           // EnebleButtonsave();
+        }
+
+        private void textBoxPatronymicEmp_TextChanged(object sender, EventArgs e)
+        {
+
+           // EnebleButtonsave();
+        }
+
+        private void textBoxDob_TextChanged(object sender, EventArgs e)
+        {
+            DateTime date = new DateTime();
+            this.textBoxAge.Text = ERROR_AGE;
+            if (DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture, DateTimeStyles.None, out date))         
+                this.textBoxAge.Text = Age(date);
+
+           // EnebleButtonsave();
+        }
+
+        private void textBoxDocSeries_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+ 
+  
+           // EnebleButtonsave();
+        }
+
+        private void textBoxDocNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+
+
+           // EnebleButtonsave();
+        }
+
+        private void textBoxPosition_TextChanged(object sender, EventArgs e)
+        {
+            
+            //EnebleButtonsave();
+        }
+
+        private void comboBoxDepNames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            //EnebleButtonsave();
+        }
+
+        private bool EnebleButtonsave()
+        {
+            
+
+            this.comboBoxDepNames.BackColor = String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString())
+                ? Color.Maroon: Color.White;
+
+            this.textBoxSurNameEmp.BackColor = String.IsNullOrEmpty(this.textBoxSurNameEmp.Text)
+                ? Color.Maroon : Color.White;
+
+            this.textBoxFirstNameEmp.BackColor = String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text)
+                ? Color.Maroon : Color.White;
+
+            this.textBoxPosition.BackColor = String.IsNullOrEmpty(this.textBoxPosition.Text)
+                ? Color.Maroon : Color.White;
+
+            this.textBoxDob.BackColor = this.textBoxAge.Text.Equals(ERROR_AGE)
+                ? Color.Maroon : Color.White;
+
+            return String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString()) &&
+                                      String.IsNullOrEmpty(this.textBoxSurNameEmp.Text) &&
+                                      String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text) &&
+                                      String.IsNullOrEmpty(this.textBoxPosition.Text) && !this.textBoxAge.Text.Equals(ERROR_AGE);
+        }
+
+        private void buttonSave_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.labelMessage.Text = "";
+            if (EnebleButtonsave())
+            {
+                command.SurName = this.textBoxSurNameEmp.Text;
+                command.FirstName = this.textBoxFirstNameEmp.Text;
+                command.Patronymic = this.textBoxPatronymicEmp.Text;
+
+                command.DocSeries = this.textBoxDocSeries.Text;
+                command.DocNumber = this.textBoxDocNumber.Text;
+
+                command.Position = this.textBoxPosition.Text;
+                command.DepartmentName = this.comboBoxDepNames.SelectedItem.ToString();
+
+                DateTime date;
+                DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture,
+                    DateTimeStyles.None, out date);
+                command.DateOfBirth = date;
+            }
+            else
+            {
+                this.labelMessage.Text = " Данные не сохранены. Некоторые поля введены неправильно.";
+            }
         }
     }
 }
