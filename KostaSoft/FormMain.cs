@@ -15,6 +15,8 @@ namespace KostaSoft
 {
     public partial class FormMain : Form, IModelObserver
     {
+        
+
         public FormMain()
         {
             InitializeComponent();
@@ -34,7 +36,7 @@ namespace KostaSoft
                 root.Nodes.Add(BuildTree(child));
 
             this.OrgTree.Nodes.Add(root);
-
+            this.Text = root.Text;
         }
 
         /// <summary>
@@ -57,26 +59,33 @@ namespace KostaSoft
 
         public void DepartmentItem(IModel model, DepartmentEventsArgs e)
         {
+                FormDepartment form = new FormDepartment(Controller)
+                {
+                    DepEvent = e,
+                    ParentDep = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "",
+                };
+                form.Show();
 
-            this.textBoxDepName.Text = e.DisplayDep.Name;
-            this.textBoxDepCode.Text = e.DisplayDep.Code;
-            foreach (var item in e.DepNameList)
-                comboBoxDepNames.Items.Add(item);
-
-            comboBoxDepNames.Text = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "";
-            this.comboBoxDepNames.Enabled = e.EnebleListBox;
         }
 
         public void EmployeeEItem(IModel model, EmployeeEventArgs e)
         {
-            
+            FormEmployee form = new FormEmployee(Controller)
+            {
+                EmployeeEvent = e,
+                ParentDep = this.OrgTree.SelectedNode.Parent.Text,
+            };
+            form.Show();
         }
 
         private void OrgTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
+
         }
 
-
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
+        }
     }
 }
