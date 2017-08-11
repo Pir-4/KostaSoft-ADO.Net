@@ -7,5 +7,6 @@ namespace KostaSoft.Controller
         void UpdateTree();
         void GetInfoItem(string name);
         void SaveEmployee(EmployeeCommand command);
+        void DeleteEmployee(int id);
     }
 }

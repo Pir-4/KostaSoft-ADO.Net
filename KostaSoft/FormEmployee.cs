@@ -162,5 +162,13 @@ namespace KostaSoft
                 this.labelMessage.Text = " Данные не сохранены. Некоторые поля введены неправильно.";
             }
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удалить сотрудника",
+                MessageBoxButtons.YesNo);
+           if(result == DialogResult.Yes)
+                Controller.DeleteEmployee(command.Id);
+        }
     }
 }

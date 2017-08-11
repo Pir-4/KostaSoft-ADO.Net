@@ -109,6 +109,11 @@ namespace KostaSoft.Model
             UpdateTree();
         }
 
+        public void DeleteEmployee(int id)
+        {
+            UpdateTree();
+        }
+
 
     }
 }
