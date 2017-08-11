@@ -31,6 +31,8 @@ namespace KostaSoft
 
         public void UpdateTree(IModel model, UpdateTreeEventArgs e)
         {
+            this.OrgTree.Nodes.Clear();
+
             TreeNode root = new TreeNode(e.Root.Name);
             foreach (var child in e.Root.Children)
                 root.Nodes.Add(BuildTree(child));

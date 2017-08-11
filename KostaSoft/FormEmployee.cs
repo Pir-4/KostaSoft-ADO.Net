@@ -48,8 +48,6 @@ namespace KostaSoft
 
             this.textBoxDocSeries.Text = emp.DocSeries;
             this.textBoxDocNumber.Text = emp.DocNumber;
-
-           EnebleButtonsave();
         }
 
         public EmployeeEventArgs EmployeeEvent { get; set; }
@@ -71,19 +69,15 @@ namespace KostaSoft
 
         private void textBoxSurNameEmp_TextChanged(object sender, EventArgs e)
         {
-           // EnebleButtonsave();
         }
 
         private void textBoxFirstNameEmp_TextChanged(object sender, EventArgs e)
         {
 
-           // EnebleButtonsave();
         }
 
         private void textBoxPatronymicEmp_TextChanged(object sender, EventArgs e)
         {
-
-           // EnebleButtonsave();
         }
 
         private void textBoxDob_TextChanged(object sender, EventArgs e)
@@ -92,8 +86,6 @@ namespace KostaSoft
             this.textBoxAge.Text = ERROR_AGE;
             if (DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture, DateTimeStyles.None, out date))         
                 this.textBoxAge.Text = Age(date);
-
-           // EnebleButtonsave();
         }
 
         private void textBoxDocSeries_KeyPress(object sender, KeyPressEventArgs e)
@@ -101,35 +93,26 @@ namespace KostaSoft
 
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
- 
-  
-           // EnebleButtonsave();
         }
 
         private void textBoxDocNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
-
-
-           // EnebleButtonsave();
         }
 
         private void textBoxPosition_TextChanged(object sender, EventArgs e)
         {
-            
-            //EnebleButtonsave();
+
         }
 
         private void comboBoxDepNames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            //EnebleButtonsave();
+
         }
 
-        private bool EnebleButtonsave()
+        private bool isDataCorrect()
         {
-            
 
             this.comboBoxDepNames.BackColor = String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString())
                 ? Color.Maroon: Color.White;
@@ -146,16 +129,16 @@ namespace KostaSoft
             this.textBoxDob.BackColor = this.textBoxAge.Text.Equals(ERROR_AGE)
                 ? Color.Maroon : Color.White;
 
-            return String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString()) &&
+            return !(String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString()) &&
                                       String.IsNullOrEmpty(this.textBoxSurNameEmp.Text) &&
                                       String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text) &&
-                                      String.IsNullOrEmpty(this.textBoxPosition.Text) && !this.textBoxAge.Text.Equals(ERROR_AGE);
+                                      String.IsNullOrEmpty(this.textBoxPosition.Text) && !this.textBoxAge.Text.Equals(ERROR_AGE));
         }
 
         private void buttonSave_MouseClick(object sender, MouseEventArgs e)
         {
             this.labelMessage.Text = "";
-            if (EnebleButtonsave())
+            if (isDataCorrect())
             {
                 command.SurName = this.textBoxSurNameEmp.Text;
                 command.FirstName = this.textBoxFirstNameEmp.Text;
@@ -171,6 +154,8 @@ namespace KostaSoft
                 DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture,
                     DateTimeStyles.None, out date);
                 command.DateOfBirth = date;
+
+                Controller.SaveEmployee(command);
             }
             else
             {

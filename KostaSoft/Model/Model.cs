@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DB;
+using KostaSoft.Model.Command;
 using KostaSoft.Model.EventAgrs;
 
 namespace KostaSoft.Model
@@ -101,6 +102,11 @@ namespace KostaSoft.Model
             }
             return false;
 
+        }
+
+        public void SaveEmployee(EmployeeCommand command)
+        {
+            UpdateTree();
         }
 
 
