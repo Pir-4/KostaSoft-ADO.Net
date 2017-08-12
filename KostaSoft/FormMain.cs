@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KostaSoft.Model;
 using KostaSoft.Controller;
 using KostaSoft.Model.EventAgrs;
+using KostaSoft.Model.Observers;
 
 namespace KostaSoft
 {

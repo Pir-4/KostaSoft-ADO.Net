@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KostaSoft.Model.EventAgrs;
 
-namespace KostaSoft.Model
+namespace KostaSoft.Model.Observers
 {
     public interface IModelObserver
     {

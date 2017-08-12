@@ -15,11 +15,6 @@ namespace KostaSoft.Model.EventAgrs
         public Department DisplayDep { get; set; }
 
         /// <summary>
-        /// Список отедлов
-        /// </summary>
-        public List<string> DepNameList { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         public bool EnebleListBox

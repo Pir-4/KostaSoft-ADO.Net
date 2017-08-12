@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KostaSoft.Model.Command;
+using KostaSoft.Model.Observers;
 
 namespace KostaSoft.Model
 {
     public interface IModel
     {
         void attach(IModelObserver imo);
+        void attach(IEmployeeObserver imo);
 
         void UpdateTree();
 

@@ -12,23 +12,36 @@ using DB;
 using KostaSoft.Controller;
 using KostaSoft.Model.EventAgrs;
 using KostaSoft.Model.Command;
+using KostaSoft.Model.Observers;
+using KostaSoft.Model;
 
 namespace KostaSoft
 {
-    public partial class FormEmployee : Form
+    public partial class FormEmployee : Form, IEmployeeObserver
     {
         EmployeeCommand command = new EmployeeCommand();
         private const string ERROR_AGE = "-:-";
-        private bool isNew = false;
+        private bool _isNew = false;
 
         private FormEmployee()
         {
             InitializeComponent();
         }
+
+        private bool isNew {
+            get { return _isNew; }
+            set
+            {
+                _isNew = value;
+                buttonDelete.Enabled = !_isNew;
+            }
+        }
+
         public FormEmployee(IController controller, bool isnew = false) : this()
         {
             Controller = controller;
             isNew = isnew;
+            Controller.attach(this);
         }
         private void FormEmployee_Load(object sender, EventArgs e)
         {
@@ -162,6 +175,7 @@ namespace KostaSoft
             this.labelMessage.Text = "";
             if (isDateCorrect())
             {
+
                 command.SurName = this.textBoxSurNameEmp.Text;
                 command.FirstName = this.textBoxFirstNameEmp.Text;
                 command.Patronymic = this.textBoxPatronymicEmp.Text;
@@ -177,9 +191,7 @@ namespace KostaSoft
                     DateTimeStyles.None, out date);
                 command.DateOfBirth = date;
 
-                //TODO: реализовать информационное сообщение о результатах операции
-                //TODO: реализоватьизменения имени формы в зависимости от введенных имен
-                //TODO: Сделать возврат ID когда создан нывый элемент
+                //TODO: исправить првоерку на неправильный ввод данных
                 if (isNew)
                 {
                     Controller.NewEmployee(command);
@@ -187,6 +199,8 @@ namespace KostaSoft
                 }
                 else
                     Controller.SaveEmployee(command);
+
+                this.Text = command.Name;
             }
             else
             {
@@ -203,6 +217,16 @@ namespace KostaSoft
                 Controller.DeleteEmployee(command.Id);
                 isNew = true;
             }
+        }
+
+        public void UpdateMassage(IModel model, EmployeeEventArgs e)
+        {
+            this.labelMessage.Text = e.Message;            
+        }
+
+        public void GetId(IModel model, EmployeeEventArgs e)
+        { 
+            command.Id = e.Id;
         }
     }
 }

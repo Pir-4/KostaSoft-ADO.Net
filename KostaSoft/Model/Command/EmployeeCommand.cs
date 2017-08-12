@@ -52,5 +52,10 @@ namespace KostaSoft.Model.Command
         /// должность
         /// </summary>
         public string Position { get; set; }
+
+        public string Name
+        {
+            get { return String.Join(" ", new List<string> { SurName, FirstName, Patronymic }); }
+        }
     }
 }
