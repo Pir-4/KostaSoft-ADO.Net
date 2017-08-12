@@ -12,16 +12,17 @@ namespace KostaSoft.Model
     {
         void attach(IModelObserver imo);
         void attach(IEmployeeObserver imo);
+        void attach(IDepartmentObserver imo);
 
         void UpdateTree();
 
         void GetInfoItem(string name);
 
-        void SaveEmployee(EmployeeCommand command);
-        void DeleteEmployee(int id);
-        void NewEmployee(EmployeeCommand command);
+        void SaveChange(EmployeeCommand command);
+        void Delete(int id);
+        void SaveNew(EmployeeCommand command);
 
-        void SaveDepartament(DepartmentCommand command);
-        void NewDepartment(DepartmentCommand command);
+        void SaveChange(DepartmentCommand command);
+        void SaveNew(DepartmentCommand command);
     }
 }

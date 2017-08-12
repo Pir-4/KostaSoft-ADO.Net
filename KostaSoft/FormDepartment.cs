@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KostaSoft.Controller;
+using KostaSoft.Model;
 using KostaSoft.Model.Command;
 using KostaSoft.Model.EventAgrs;
+using KostaSoft.Model.Observers;
 
 namespace KostaSoft
 {
-    public partial class FormDepartment : Form
+    public partial class FormDepartment : Form, IDepartmentObserver
     {
-        private bool isNew = false;
+        private bool _isNew = false;
 
         private DepartmentCommand command = new DepartmentCommand();
 
@@ -28,6 +30,7 @@ namespace KostaSoft
         {
             Controller = controller;
             isNew = isnew;
+            Controller.attach(this);
         }
 
         private void FormDepartment_Load(object sender, EventArgs e)
@@ -41,7 +44,13 @@ namespace KostaSoft
             }
             else
                 InitOldDep();
-            
+
+        }
+
+        private bool isNew
+        {
+            get { return _isNew; }
+            set { _isNew = value; }
         }
 
         private void InitOldDep()
@@ -89,18 +98,28 @@ namespace KostaSoft
 
                 if (isNew)
                 {
-                    Controller.NewDepartment(command);
+                    Controller.SaveNew(command);
                     isNew = false;
                 }
                 else
                 {
-                    Controller.SaveDepartament(command);
+                    Controller.SaveChange(command);
                 }
             }
             else
             {
                 this.labelMessage.Text = " Данные не сохранены. Некоторые поля введены неправильно.";
             }
+        }
+
+        public void UpdateMessage(IModel model, DepartmentEventsArgs e)
+        {
+            labelMessage.Text = e.Message;
+        }
+
+        public void GetId(IModel model, DepartmentEventsArgs e)
+        {
+            command.Id = e.Id;
         }
     }
 }

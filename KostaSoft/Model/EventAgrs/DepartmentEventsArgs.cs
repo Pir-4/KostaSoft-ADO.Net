@@ -21,5 +21,8 @@ namespace KostaSoft.Model.EventAgrs
         {
             get { return !String.IsNullOrEmpty(DisplayDep.ParentDepartmentID) ; }
         }
+
+        public string Id { get; set; }
+        public string Message { get; set; }
     }
 }

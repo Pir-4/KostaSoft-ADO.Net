@@ -20,24 +20,26 @@ namespace KostaSoft.Controller
 
         public void attach(IEmployeeObserver imo) => model.attach(imo);
 
+        public void attach(IDepartmentObserver imo) => model.attach(imo);
+
         public void UpdateTree() => model.UpdateTree();
 
         public void GetInfoItem(string name) => model.GetInfoItem(name);
 
         #region Employee
-        public void SaveEmployee(EmployeeCommand command) => model.SaveEmployee(command);
+        public void SaveChange(EmployeeCommand command) => model.SaveChange(command);
 
-        public void DeleteEmployee(int id) => model.DeleteEmployee(id);
+        public void DeleteEmployee(int id) => model.Delete(id);
 
-        public void NewEmployee(EmployeeCommand command) => model.NewEmployee(command);
+        public void SaveNew(EmployeeCommand command) => model.SaveNew(command);
 
         #endregion
 
         #region Departament
 
-        public void SaveDepartament(DepartmentCommand command) => model.SaveDepartament(command);
+        public void SaveChange(DepartmentCommand command) => model.SaveChange(command);
 
-        public void NewDepartment(DepartmentCommand command) => model.NewDepartment(command);
+        public void SaveNew(DepartmentCommand command) => model.SaveNew(command);
 
         #endregion
 

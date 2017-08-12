@@ -194,11 +194,11 @@ namespace KostaSoft
                 //TODO: исправить првоерку на неправильный ввод данных
                 if (isNew)
                 {
-                    Controller.NewEmployee(command);
+                    Controller.SaveNew(command);
                     isNew = false;
                 }
                 else
-                    Controller.SaveEmployee(command);
+                    Controller.SaveChange(command);
 
                 this.Text = command.Name;
             }

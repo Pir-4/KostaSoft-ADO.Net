@@ -72,6 +72,7 @@
     <Compile Include="Model\EventAgrs\EmployeeEventArgs.cs" />
     <Compile Include="Model\EventAgrs\UpdateTreeEventArgs.cs" />
     <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\Observers\IDepartmentObserver.cs" />
     <Compile Include="Model\Observers\IEmployeeObserver .cs" />
     <Compile Include="Model\Observers\IModelObserver.cs" />
     <Compile Include="Model\Model.cs" />

@@ -6,15 +6,16 @@ namespace KostaSoft.Controller
     public interface IController
     {
         void attach(IEmployeeObserver imo);
+        void attach(IDepartmentObserver imo);
 
         void UpdateTree();
         void GetInfoItem(string name);
 
-        void SaveEmployee(EmployeeCommand command);
+        void SaveChange(EmployeeCommand command);
         void DeleteEmployee(int id);
-        void NewEmployee(EmployeeCommand command);
+        void SaveNew(EmployeeCommand command);
 
-        void SaveDepartament(DepartmentCommand command);
-        void NewDepartment(DepartmentCommand command);
+        void SaveChange(DepartmentCommand command);
+        void SaveNew(DepartmentCommand command);
     }
 }

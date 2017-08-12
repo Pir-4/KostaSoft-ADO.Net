@@ -22,7 +22,10 @@ namespace KostaSoft.Model
         EmployeeEventArgs employeeEventArgs = new EmployeeEventArgs();
 
         private event ModelUpdateHandler<Model> modelHedlerUpdateTree;
+
         private event ModelDeptHandler<Model> modelDeptHandler;
+        private event ModelDeptHandler<Model> modelDeptHandlerMessage;
+        private event ModelDeptHandler<Model> modelDeptHandlerId;
 
         private event ModelEmplHandler<Model> modelEmplHandler;
         private event ModelEmplHandler<Model> modelEmplHandlerMassage;
@@ -51,6 +54,11 @@ namespace KostaSoft.Model
             modelEmplHandlerId += new ModelEmplHandler<Model>(imo.GetId);
         }
 
+        public  void attach(IDepartmentObserver imo)
+        {
+            modelDeptHandlerMessage += new ModelDeptHandler<Model>(imo.UpdateMessage);
+            modelDeptHandlerId += new ModelDeptHandler<Model>(imo.GetId);
+        }
         public void UpdateTree()
         {
             Departments = manager.GetDepartments();
@@ -95,7 +103,7 @@ namespace KostaSoft.Model
 
         }
 
-        public void SaveEmployee(EmployeeCommand command)
+        public void SaveChange(EmployeeCommand command)
         {
             try
             {
@@ -115,7 +123,7 @@ namespace KostaSoft.Model
 
         }
 
-        public void DeleteEmployee(int id)
+        public void Delete(int id)
         {
 
             try
@@ -136,7 +144,7 @@ namespace KostaSoft.Model
             
         }
 
-        public void NewEmployee(EmployeeCommand command)
+        public void SaveNew(EmployeeCommand command)
         {
             try
             {
@@ -151,20 +159,20 @@ namespace KostaSoft.Model
             finally
             {
                 modelEmplHandlerMassage.Invoke(this, employeeEventArgs);
-                int maxId = 0;
-                foreach(Employee emp in Employees)
-                    if (emp.Id > maxId)
-                        maxId = emp.Id;
 
+                IEnumerable<int> oldIds = Employees.Select(item => item.Id);
                 UpdateTree();
 
-                foreach (Employee emp in Employees)
-                    if (emp.Id > maxId)
-                    {
-                        employeeEventArgs.Id = emp.Id;
-                        break;
-                    }
-                modelEmplHandlerId.Invoke(this,employeeEventArgs);
+                IEnumerable<int> newIds = Employees.Select(item => item.Id);
+
+                List<int> ids = newIds.Except(oldIds).ToList();
+
+                if (ids.Count > 0)
+                {
+                    employeeEventArgs.Id = ids[0];
+                    modelEmplHandlerId.Invoke(this, employeeEventArgs);
+                }
+                
             }
            
         }
@@ -214,16 +222,55 @@ namespace KostaSoft.Model
             return false;
         }
 
-        public void SaveDepartament(DepartmentCommand command)
+        public void SaveChange(DepartmentCommand command)
         {
-            bool result = manager.UpdateDepartments(command.Id, GetParam(command));
-            UpdateTree();
+            try
+            {
+                bool result = manager.UpdateDepartments(command.Id, GetParam(command));
+                departmentEventsArgs.Message = result ? "Сохранено." : "Не сохранилось.";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                departmentEventsArgs.Message = String.Format("Ошибка. {0}", e.Message);
+            }
+            finally
+            {
+                modelDeptHandlerMessage.Invoke(this,departmentEventsArgs);
+                UpdateTree();
+            }
+           
         }
 
-        public void NewDepartment(DepartmentCommand command)
+        public void SaveNew(DepartmentCommand command)
         {
-            bool result = manager.InsertDepartments(GetParam(command));
-            UpdateTree();
+            try
+            {
+                bool result = manager.InsertDepartments(GetParam(command));
+                departmentEventsArgs.Message = result ? "Новый отдел создан." : "Новый отдел не создан.";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                departmentEventsArgs.Message = String.Format("Ошибка. {0}", e.Message);
+            }
+            finally
+            {
+                modelDeptHandlerMessage.Invoke(this, departmentEventsArgs);
+
+                IEnumerable<string> oldIds = Departments.Select(item => item.Id);
+                UpdateTree();
+
+                IEnumerable<string> newIds = Departments.Select(item => item.Id);
+                List<string> ids = newIds.Except(oldIds).ToList();
+                if (ids.Count > 0)
+                {
+                    departmentEventsArgs.Id = ids[0];
+                    modelDeptHandlerId.Invoke(this, departmentEventsArgs);
+                }
+            }
+                
+            
         }
 
 
