@@ -12,11 +12,6 @@ namespace KostaSoft.Model.EventAgrs
         /// <summary>
         /// Отдел, преназначен для отображения во вьюхе
         /// </summary>
-        public Employee DisplayEmp { get; set; }
-
-        /// <summary>
-        /// Список отедлов
-        /// </summary>
-        public List<string> DepNameList { get; set; }
+        public Employee DisplayEmp { get; set; }   
     }
 }

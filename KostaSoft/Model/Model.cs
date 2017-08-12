@@ -50,6 +50,7 @@ namespace KostaSoft.Model
             builder.Sotring(Employees.Cast<IOrgItem>().ToList());
 
             updateTreeEventArgs.Root = builder.Root;
+            updateTreeEventArgs.DepNameList = DepartmentNames;
             modelHedlerUpdateTree.Invoke(this, updateTreeEventArgs);
         }
 
@@ -89,11 +90,10 @@ namespace KostaSoft.Model
                 if (emp.Count > 0)
                 {
                     employeeEventArgs.DisplayEmp = emp[0];
-                    employeeEventArgs.DepNameList = DepartmentNames;
                     modelEmplHandler(this, employeeEventArgs);
                     return true;
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -106,12 +106,50 @@ namespace KostaSoft.Model
 
         public void SaveEmployee(EmployeeCommand command)
         {
-            UpdateTree();
+            try
+            { 
+                bool result = manager.UpdateEmployee(command.Id, GetParam(command));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                UpdateTree();
+            }
+           
         }
 
         public void DeleteEmployee(int id)
         {
             UpdateTree();
+        }
+
+        public void NewEmployee(EmployeeCommand command)
+        {
+            manager.InsertEmployee(GetParam(command));
+            UpdateTree();
+        }
+        private Dictionary<string, string> GetParam(EmployeeCommand command)
+        {
+            List<Department> dep = Departments.Where(item => item.Name.Equals(command.DepartmentName)).ToList();
+
+            return new Dictionary<string, string>()
+            {
+                { "DepartmentID", dep[0].Id},
+
+                { "SurName", command.SurName},
+                { "FirstName", command.FirstName},
+                { "Patronymic", command.Patronymic},
+
+                { "DateOfBirth", command.DateOfBirth.ToString()},
+
+                { "DocSeries", command.DocSeries},
+                { "DocNumber", command.DocNumber},
+                { "Position", command.Position},
+            };
         }
 
 

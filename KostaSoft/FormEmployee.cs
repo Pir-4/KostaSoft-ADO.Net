@@ -19,16 +19,33 @@ namespace KostaSoft
     {
         EmployeeCommand command = new EmployeeCommand();
         private const string ERROR_AGE = "-:-";
+        private bool isNew = false;
 
-        public FormEmployee()
+        private FormEmployee()
         {
             InitializeComponent();
         }
-        public FormEmployee(IController controller) : this()
+        public FormEmployee(IController controller, bool isnew = false) : this()
         {
             Controller = controller;
+            isNew = isnew;
         }
         private void FormEmployee_Load(object sender, EventArgs e)
+        {
+            if (isNew)
+            {
+                foreach (var item in DepNameList)
+                    this.comboBoxDepNames.Items.Add(item);
+
+                comboBoxDepNames.SelectedIndex = 0;
+            }
+            else
+            {
+                InitOldEmp();
+            }
+        }
+
+        private void InitOldEmp()
         {
             Employee emp = EmployeeEvent.DisplayEmp;
             command.Id = emp.Id;
@@ -39,7 +56,7 @@ namespace KostaSoft
             this.textBoxPatronymicEmp.Text = emp.Patronymic;
 
             this.textBoxPosition.Text = emp.Position;
-            foreach (var item in EmployeeEvent.DepNameList)
+            foreach (var item in DepNameList)
                 this.comboBoxDepNames.Items.Add(item);
             comboBoxDepNames.Text = ParentDep;
 
@@ -51,8 +68,13 @@ namespace KostaSoft
         }
 
         public EmployeeEventArgs EmployeeEvent { get; set; }
+
         public String ParentDep { get; set; }
+
+        public List<string> DepNameList { get; set; }
+
         private IController Controller { get; set; }
+
 
         private string Age(DateTime dateOfBirth)
         {
@@ -84,7 +106,7 @@ namespace KostaSoft
         {
             DateTime date = new DateTime();
             this.textBoxAge.Text = ERROR_AGE;
-            if (DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture, DateTimeStyles.None, out date))         
+            if (DateTime.TryParseExact(this.textBoxDob.Text, new[] { "dd.MM.yyyy" }, CultureInfo.CurrentCulture, DateTimeStyles.None, out date))
                 this.textBoxAge.Text = Age(date);
         }
 
@@ -115,7 +137,7 @@ namespace KostaSoft
         {
 
             this.comboBoxDepNames.BackColor = String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString())
-                ? Color.Maroon: Color.White;
+                ? Color.Maroon : Color.White;
 
             this.textBoxSurNameEmp.BackColor = String.IsNullOrEmpty(this.textBoxSurNameEmp.Text)
                 ? Color.Maroon : Color.White;
@@ -155,7 +177,10 @@ namespace KostaSoft
                     DateTimeStyles.None, out date);
                 command.DateOfBirth = date;
 
-                Controller.SaveEmployee(command);
+                if (isNew)
+                    Controller.NewEmployee(command);
+                else
+                    Controller.SaveEmployee(command);
             }
             else
             {
@@ -167,7 +192,7 @@ namespace KostaSoft
         {
             DialogResult result = MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удалить сотрудника",
                 MessageBoxButtons.YesNo);
-           if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
                 Controller.DeleteEmployee(command.Id);
         }
     }

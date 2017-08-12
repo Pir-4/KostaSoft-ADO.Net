@@ -55,6 +55,7 @@
             // textBoxPatronymicEmp
             // 
             this.textBoxPatronymicEmp.Location = new System.Drawing.Point(80, 86);
+            this.textBoxPatronymicEmp.MaxLength = 50;
             this.textBoxPatronymicEmp.Name = "textBoxPatronymicEmp";
             this.textBoxPatronymicEmp.Size = new System.Drawing.Size(104, 20);
             this.textBoxPatronymicEmp.TabIndex = 20;
@@ -73,6 +74,7 @@
             // textBoxFirstNameEmp
             // 
             this.textBoxFirstNameEmp.Location = new System.Drawing.Point(81, 53);
+            this.textBoxFirstNameEmp.MaxLength = 50;
             this.textBoxFirstNameEmp.Name = "textBoxFirstNameEmp";
             this.textBoxFirstNameEmp.Size = new System.Drawing.Size(104, 20);
             this.textBoxFirstNameEmp.TabIndex = 18;
@@ -91,6 +93,7 @@
             // textBoxSurNameEmp
             // 
             this.textBoxSurNameEmp.Location = new System.Drawing.Point(80, 23);
+            this.textBoxSurNameEmp.MaxLength = 50;
             this.textBoxSurNameEmp.Name = "textBoxSurNameEmp";
             this.textBoxSurNameEmp.Size = new System.Drawing.Size(104, 20);
             this.textBoxSurNameEmp.TabIndex = 16;
@@ -145,6 +148,7 @@
             // textBoxDocSeries
             // 
             this.textBoxDocSeries.Location = new System.Drawing.Point(80, 186);
+            this.textBoxDocSeries.MaxLength = 4;
             this.textBoxDocSeries.Name = "textBoxDocSeries";
             this.textBoxDocSeries.Size = new System.Drawing.Size(51, 20);
             this.textBoxDocSeries.TabIndex = 26;
@@ -163,6 +167,7 @@
             // textBoxDocNumber
             // 
             this.textBoxDocNumber.Location = new System.Drawing.Point(80, 212);
+            this.textBoxDocNumber.MaxLength = 6;
             this.textBoxDocNumber.Name = "textBoxDocNumber";
             this.textBoxDocNumber.Size = new System.Drawing.Size(51, 20);
             this.textBoxDocNumber.TabIndex = 28;
@@ -181,6 +186,7 @@
             // textBoxPosition
             // 
             this.textBoxPosition.Location = new System.Drawing.Point(275, 23);
+            this.textBoxPosition.MaxLength = 50;
             this.textBoxPosition.Name = "textBoxPosition";
             this.textBoxPosition.Size = new System.Drawing.Size(193, 20);
             this.textBoxPosition.TabIndex = 30;

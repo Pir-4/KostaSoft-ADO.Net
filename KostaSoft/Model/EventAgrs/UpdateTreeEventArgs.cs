@@ -14,6 +14,9 @@ namespace KostaSoft.Model.EventAgrs
         /// </summary>
         public TreeItem Root { get; set; }
 
-        public Employee DisplyEmp { get; set; }
+        /// <summary>
+        /// Список отедлов
+        /// </summary>
+        public List<string> DepNameList { get; set; }
     }
 }

@@ -22,6 +22,9 @@ namespace KostaSoft.Controller
         public void GetInfoItem(string name) => model.GetInfoItem(name);
 
         public void SaveEmployee(EmployeeCommand command) => model.SaveEmployee(command);
+
         public void DeleteEmployee(int id) => model.DeleteEmployee(id);
+
+        public void NewEmployee(EmployeeCommand command) => model.NewEmployee(command);
     }
 }

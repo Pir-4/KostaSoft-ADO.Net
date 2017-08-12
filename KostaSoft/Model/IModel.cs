@@ -17,5 +17,6 @@ namespace KostaSoft.Model
 
         void SaveEmployee(EmployeeCommand command);
         void DeleteEmployee(int id);
+        void NewEmployee(EmployeeCommand command);
     }
 }

@@ -30,6 +30,7 @@
         {
             this.OrgTree = new System.Windows.Forms.TreeView();
             this.buttonOpen = new System.Windows.Forms.Button();
+            this.buttonNewEmp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OrgTree
@@ -50,12 +51,23 @@
             this.buttonOpen.UseVisualStyleBackColor = true;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
+            // buttonNewEmp
+            // 
+            this.buttonNewEmp.Location = new System.Drawing.Point(292, 54);
+            this.buttonNewEmp.Name = "buttonNewEmp";
+            this.buttonNewEmp.Size = new System.Drawing.Size(75, 35);
+            this.buttonNewEmp.TabIndex = 16;
+            this.buttonNewEmp.Text = "Новый сотрудник";
+            this.buttonNewEmp.UseVisualStyleBackColor = true;
+            this.buttonNewEmp.Click += new System.EventHandler(this.buttonNewEmp_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(377, 255);
+            this.Controls.Add(this.buttonNewEmp);
             this.Controls.Add(this.buttonOpen);
             this.Controls.Add(this.OrgTree);
             this.Name = "FormMain";
@@ -69,6 +81,7 @@
 
         private System.Windows.Forms.TreeView OrgTree;
         private System.Windows.Forms.Button buttonOpen;
+        private System.Windows.Forms.Button buttonNewEmp;
     }
 }
 

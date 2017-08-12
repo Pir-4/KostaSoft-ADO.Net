@@ -15,7 +15,7 @@ namespace KostaSoft
 {
     public partial class FormMain : Form, IModelObserver
     {
-        
+
 
         public FormMain()
         {
@@ -32,6 +32,7 @@ namespace KostaSoft
         public void UpdateTree(IModel model, UpdateTreeEventArgs e)
         {
             this.OrgTree.Nodes.Clear();
+            DepartementNames = e.DepNameList;
 
             TreeNode root = new TreeNode(e.Root.Name);
             foreach (var child in e.Root.Children)
@@ -61,12 +62,12 @@ namespace KostaSoft
 
         public void DepartmentItem(IModel model, DepartmentEventsArgs e)
         {
-                FormDepartment form = new FormDepartment(Controller)
-                {
-                    DepEvent = e,
-                    ParentDep = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "",
-                };
-                form.Show();
+            FormDepartment form = new FormDepartment(Controller)
+            {
+                DepEvent = e,
+                ParentDep = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "",
+            };
+            form.Show();
 
         }
 
@@ -76,9 +77,12 @@ namespace KostaSoft
             {
                 EmployeeEvent = e,
                 ParentDep = this.OrgTree.SelectedNode.Parent.Text,
+                DepNameList = DepartementNames,
             };
             form.Show();
         }
+
+        private List<string> DepartementNames { get; set; }
 
         private void OrgTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -88,6 +92,15 @@ namespace KostaSoft
         private void buttonOpen_Click(object sender, EventArgs e)
         {
             Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
+        }
+
+        private void buttonNewEmp_Click(object sender, EventArgs e)
+        {
+            FormEmployee from = new FormEmployee(Controller, true)
+            {
+                DepNameList = DepartementNames
+            };
+            from.Show();
         }
     }
 }

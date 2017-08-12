@@ -19,6 +19,11 @@ namespace KostaSoft.Model.Command
         public string DepartmentName { get; set; }
 
         /// <summary>
+        /// Идентификатор подразделения
+        /// </summary>
+        public string DepartmentID { get; set; }
+
+        /// <summary>
         /// Фамилия
         /// </summary>
         public string SurName { get; set; }
