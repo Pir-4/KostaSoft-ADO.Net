@@ -20,6 +20,21 @@ namespace DB
 
             return result;
         }
+        /// <summary>
+        /// Обновление полей сотрудника
+        /// </summary>
+        /// <param name="id">идентификатор отдела</param>
+        /// <param name="pars"> словарь где ключ-имя поля, значение-новое значение</param>
+        /// <returns>успешность операции</returns>
+        public bool UpdateDepartments(string id, Dictionary<string, string> pars)
+        {
+            string query = "Update Department Set ";
+            IEnumerable<string> sets = pars.Select(kvp => String.Format("{0}='{1}'", kvp.Key, kvp.Value));
+            query += String.Join(", ", sets.ToList()) + String.Format(" where ID='{0}'", id);
+
+            int result = _driver.ExecuteNonQuery(query);
+            return result != -1;
+        }
 
         /// <summary>
         /// Получение списка сотрудников всей организации

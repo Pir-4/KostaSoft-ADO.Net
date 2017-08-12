@@ -66,6 +66,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Command\DepartmentCommand.cs" />
     <Compile Include="Model\Command\EmployeeCommand.cs" />
     <Compile Include="Model\EventAgrs\DepartmentEventsArgs.cs" />
     <Compile Include="Model\EventAgrs\EmployeeEventArgs.cs" />

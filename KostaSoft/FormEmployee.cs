@@ -133,7 +133,7 @@ namespace KostaSoft
 
         }
 
-        private bool isDataCorrect()
+        private bool isDateCorrect()
         {
 
             this.comboBoxDepNames.BackColor = String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString())
@@ -160,7 +160,7 @@ namespace KostaSoft
         private void buttonSave_MouseClick(object sender, MouseEventArgs e)
         {
             this.labelMessage.Text = "";
-            if (isDataCorrect())
+            if (isDateCorrect())
             {
                 command.SurName = this.textBoxSurNameEmp.Text;
                 command.FirstName = this.textBoxFirstNameEmp.Text;
@@ -177,6 +177,8 @@ namespace KostaSoft
                     DateTimeStyles.None, out date);
                 command.DateOfBirth = date;
 
+                //TODO: реализовать информационное сообщение о результатах операции
+                //TODO: реализоватьизменения имени формы в зависимости от введенных имен
                 if (isNew)
                     Controller.NewEmployee(command);
                 else

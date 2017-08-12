@@ -285,7 +285,7 @@
             this.Controls.Add(this.textBoxSurNameEmp);
             this.Controls.Add(this.labelSurNameEmp);
             this.Name = "FormEmployee";
-            this.Text = "FormEmployee";
+            this.Text = "Новый сотрудник";
             this.Load += new System.EventHandler(this.FormEmployee_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

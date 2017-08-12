@@ -133,6 +133,13 @@ namespace KostaSoft.Model
             manager.InsertEmployee(GetParam(command));
             UpdateTree();
         }
+
+        public void SaveDepartament(DepartmentCommand command)
+        {
+            bool result = manager.UpdateDepartments(command.Id, GetParam(command));
+            UpdateTree();
+        }
+
         private Dictionary<string, string> GetParam(EmployeeCommand command)
         {
             List<Department> dep = Departments.Where(item => item.Name.Equals(command.DepartmentName)).ToList();
@@ -152,6 +159,23 @@ namespace KostaSoft.Model
                 { "Position", command.Position},
             };
         }
+
+        private Dictionary<string, string> GetParam(DepartmentCommand command)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>()
+            {
+                { "Code", command.Code},
+                { "Name", command.Name},
+            };
+
+            if (command.ParentDepartmentName != null)
+            {
+                List<Department> dep = Departments.Where(item => item.Name.Equals(command.ParentDepartmentName)).ToList();
+                result.Add("ParentDepartmentID",dep[0].Id);
+            }
+            return result;
+        }
+
 
 
     }

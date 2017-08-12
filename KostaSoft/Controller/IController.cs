@@ -10,5 +10,7 @@ namespace KostaSoft.Controller
         void SaveEmployee(EmployeeCommand command);
         void DeleteEmployee(int id);
         void NewEmployee(EmployeeCommand command);
+
+        void SaveDepartament(DepartmentCommand command);
     }
 }

@@ -66,6 +66,7 @@ namespace KostaSoft
             {
                 DepEvent = e,
                 ParentDep = e.EnebleListBox ? this.OrgTree.SelectedNode.Parent.Text : "",
+                DepNameList = DepartementNames
             };
             form.Show();
 

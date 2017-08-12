@@ -34,6 +34,8 @@
             this.labelDepCode = new System.Windows.Forms.Label();
             this.textBoxDepCode = new System.Windows.Forms.TextBox();
             this.labelDep = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.labelMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBoxDepNames
@@ -56,6 +58,7 @@
             // textBoxDepName
             // 
             this.textBoxDepName.Location = new System.Drawing.Point(7, 42);
+            this.textBoxDepName.MaxLength = 50;
             this.textBoxDepName.Name = "textBoxDepName";
             this.textBoxDepName.Size = new System.Drawing.Size(281, 20);
             this.textBoxDepName.TabIndex = 12;
@@ -73,6 +76,7 @@
             // textBoxDepCode
             // 
             this.textBoxDepCode.Location = new System.Drawing.Point(97, 9);
+            this.textBoxDepCode.MaxLength = 10;
             this.textBoxDepCode.Name = "textBoxDepCode";
             this.textBoxDepCode.Size = new System.Drawing.Size(61, 20);
             this.textBoxDepCode.TabIndex = 10;
@@ -87,11 +91,31 @@
             this.labelDep.TabIndex = 9;
             this.labelDep.Text = "Отдел";
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(13, 126);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 15;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonSave_MouseClick);
+            // 
+            // labelMessage
+            // 
+            this.labelMessage.AutoSize = true;
+            this.labelMessage.Location = new System.Drawing.Point(12, 158);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new System.Drawing.Size(0, 13);
+            this.labelMessage.TabIndex = 16;
+            // 
             // FormDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 161);
+            this.ClientSize = new System.Drawing.Size(344, 180);
+            this.Controls.Add(this.labelMessage);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxDepNames);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxDepName);
@@ -99,7 +123,7 @@
             this.Controls.Add(this.textBoxDepCode);
             this.Controls.Add(this.labelDep);
             this.Name = "FormDepartment";
-            this.Text = "FormDepartment";
+            this.Text = "Новый отдел";
             this.Load += new System.EventHandler(this.FormDepartment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,5 +138,7 @@
         private System.Windows.Forms.Label labelDepCode;
         private System.Windows.Forms.TextBox textBoxDepCode;
         private System.Windows.Forms.Label labelDep;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label labelMessage;
     }
 }
