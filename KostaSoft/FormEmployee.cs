@@ -193,7 +193,10 @@ namespace KostaSoft
             DialogResult result = MessageBox.Show("Вы действительно хотите удалить сотрудника?", "Удалить сотрудника",
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
+            {
                 Controller.DeleteEmployee(command.Id);
+                isNew = true;
+            }
         }
     }
 }

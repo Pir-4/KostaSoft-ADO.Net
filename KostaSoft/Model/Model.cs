@@ -124,6 +124,7 @@ namespace KostaSoft.Model
 
         public void DeleteEmployee(int id)
         {
+            manager.DeleteEmployee(id);
             UpdateTree();
         }
 
