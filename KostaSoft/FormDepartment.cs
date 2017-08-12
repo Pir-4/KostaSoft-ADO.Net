@@ -50,7 +50,13 @@ namespace KostaSoft
         private bool isNew
         {
             get { return _isNew; }
-            set { _isNew = value; }
+            set
+            {
+                _isNew = value;
+                buttonDelete.Enabled = !_isNew;
+                if (!this.comboBoxDepNames.Enabled)
+                    buttonDelete.Enabled = false;
+            }
         }
 
         private void InitOldDep()
@@ -64,7 +70,7 @@ namespace KostaSoft
                 comboBoxDepNames.Items.Add(item);
 
             comboBoxDepNames.Text = ParentDep;
-            this.comboBoxDepNames.Enabled = DepEvent.EnebleListBox;
+            this.comboBoxDepNames.Enabled = buttonDelete.Enabled = DepEvent.EnebleListBox;
         }
         public DepartmentEventsArgs DepEvent { get; set; }
 

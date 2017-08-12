@@ -36,6 +36,7 @@
             this.labelDep = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelMessage = new System.Windows.Forms.Label();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxDepNames
@@ -109,11 +110,21 @@
             this.labelMessage.Size = new System.Drawing.Size(0, 13);
             this.labelMessage.TabIndex = 16;
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(111, 126);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 17;
+            this.buttonDelete.Text = "Удалить";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            // 
             // FormDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 180);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxDepNames);
@@ -140,5 +151,6 @@
         private System.Windows.Forms.Label labelDep;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelMessage;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
