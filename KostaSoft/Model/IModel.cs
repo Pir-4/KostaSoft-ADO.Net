@@ -20,5 +20,6 @@ namespace KostaSoft.Model
         void NewEmployee(EmployeeCommand command);
 
         void SaveDepartament(DepartmentCommand command);
+        void NewDepartment(DepartmentCommand command);
     }
 }

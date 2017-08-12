@@ -140,6 +140,12 @@ namespace KostaSoft.Model
             UpdateTree();
         }
 
+        public void NewDepartment(DepartmentCommand command)
+        {
+            bool result = manager.InsertDepartments(GetParam(command));
+            UpdateTree();
+        }
+
         private Dictionary<string, string> GetParam(EmployeeCommand command)
         {
             List<Department> dep = Departments.Where(item => item.Name.Equals(command.DepartmentName)).ToList();

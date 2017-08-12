@@ -103,5 +103,14 @@ namespace KostaSoft
             };
             from.Show();
         }
+
+        private void buttonNewDep_MouseClick(object sender, MouseEventArgs e)
+        {
+            FormDepartment from = new FormDepartment(Controller, true)
+            {
+                DepNameList = DepartementNames,
+            };
+            from.Show();
+        }
     }
 }

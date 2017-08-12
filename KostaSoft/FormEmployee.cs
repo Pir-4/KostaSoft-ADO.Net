@@ -179,8 +179,12 @@ namespace KostaSoft
 
                 //TODO: реализовать информационное сообщение о результатах операции
                 //TODO: реализоватьизменения имени формы в зависимости от введенных имен
+                //TODO: Сделать возврат ID когда создан нывый элемент
                 if (isNew)
+                {
                     Controller.NewEmployee(command);
+                    isNew = false;
+                }
                 else
                     Controller.SaveEmployee(command);
             }

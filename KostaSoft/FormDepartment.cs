@@ -34,16 +34,14 @@ namespace KostaSoft
         {
             if (isNew)
             {
-                this.textBoxDepCode.Text = DepEvent.DisplayDep.Code;
                 foreach (var item in DepNameList)
                     comboBoxDepNames.Items.Add(item);
 
                 comboBoxDepNames.SelectedIndex = 0;
             }
-                else
-            {
+            else
                 InitOldDep();
-            }
+            
         }
 
         private void InitOldDep()
@@ -53,7 +51,7 @@ namespace KostaSoft
 
             this.textBoxDepName.Text = DepEvent.DisplayDep.Name;
             this.textBoxDepCode.Text = DepEvent.DisplayDep.Code;
-            foreach (var item in DepNameList.Where(item=> !item.Equals(DepEvent.DisplayDep.Name)))
+            foreach (var item in DepNameList.Where(item => !item.Equals(DepEvent.DisplayDep.Name)))
                 comboBoxDepNames.Items.Add(item);
 
             comboBoxDepNames.Text = ParentDep;
@@ -90,7 +88,10 @@ namespace KostaSoft
                     : null;
 
                 if (isNew)
-                    ;
+                {
+                    Controller.NewDepartment(command);
+                    isNew = false;
+                }
                 else
                 {
                     Controller.SaveDepartament(command);

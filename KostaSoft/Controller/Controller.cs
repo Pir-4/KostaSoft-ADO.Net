@@ -28,5 +28,6 @@ namespace KostaSoft.Controller
         public void NewEmployee(EmployeeCommand command) => model.NewEmployee(command);
 
         public void SaveDepartament(DepartmentCommand command) => model.SaveDepartament(command);
+        public void NewDepartment(DepartmentCommand command) => model.NewDepartment(command);
     }
 }

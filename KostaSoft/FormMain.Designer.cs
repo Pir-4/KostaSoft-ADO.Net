@@ -31,6 +31,7 @@
             this.OrgTree = new System.Windows.Forms.TreeView();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonNewEmp = new System.Windows.Forms.Button();
+            this.buttonNewDep = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OrgTree
@@ -61,17 +62,28 @@
             this.buttonNewEmp.UseVisualStyleBackColor = true;
             this.buttonNewEmp.Click += new System.EventHandler(this.buttonNewEmp_Click);
             // 
+            // buttonNewDep
+            // 
+            this.buttonNewDep.Location = new System.Drawing.Point(292, 95);
+            this.buttonNewDep.Name = "buttonNewDep";
+            this.buttonNewDep.Size = new System.Drawing.Size(75, 35);
+            this.buttonNewDep.TabIndex = 17;
+            this.buttonNewDep.Text = "Новый отдел";
+            this.buttonNewDep.UseVisualStyleBackColor = true;
+            this.buttonNewDep.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonNewDep_MouseClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(377, 255);
+            this.Controls.Add(this.buttonNewDep);
             this.Controls.Add(this.buttonNewEmp);
             this.Controls.Add(this.buttonOpen);
             this.Controls.Add(this.OrgTree);
             this.Name = "FormMain";
-            this.Text = "Form1";
+            this.Text = "Фирма";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
 
@@ -82,6 +94,7 @@
         private System.Windows.Forms.TreeView OrgTree;
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.Button buttonNewEmp;
+        private System.Windows.Forms.Button buttonNewDep;
     }
 }
 

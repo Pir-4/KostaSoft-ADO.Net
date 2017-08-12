@@ -35,6 +35,26 @@ namespace DB
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
         }
+        /// <summary>
+        /// Вставка нового одела
+        /// </summary>
+        /// <param name="pars">словарь где ключ-имя поля, значение-новое значение</param>
+        /// <returns>успешнойсть операции</returns>
+        public bool InsertDepartments(Dictionary<string, string> pars)
+        {
+            string query = "Insert Into Department ";
+            pars["ID"] = Guid.NewGuid().ToString();
+
+            List<string> keys = pars.Keys.ToList();
+            List<string> values = keys.Select(item => "'" + pars[item] + "'").ToList();
+
+            query += "(" + string.Join(", ", keys) + ")" +
+                     "Values (" + string.Join(", ", values) + ")";
+
+            int result = _driver.ExecuteNonQuery(query);
+            return result != -1;
+        }
+
 
         /// <summary>
         /// Получение списка сотрудников всей организации
