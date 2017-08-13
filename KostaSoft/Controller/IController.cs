@@ -12,7 +12,7 @@ namespace KostaSoft.Controller
         void GetInfoItem(string name);
 
         void SaveChange(EmployeeCommand command);
-        void DeleteEmployee(int id);
+        void Delete(int id);
         void SaveNew(EmployeeCommand command);
 
         void SaveChange(DepartmentCommand command);

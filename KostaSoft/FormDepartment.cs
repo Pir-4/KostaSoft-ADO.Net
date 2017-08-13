@@ -127,5 +127,12 @@ namespace KostaSoft
         {
             command.Id = e.Id;
         }
+
+        private void buttonDelete_MouseClick(object sender, MouseEventArgs e)
+        {
+            FormDeleteDep from =new FormDeleteDep(Controller, DepNameList, () => isNew = true);
+
+            from.Show();
+        }
     }
 }

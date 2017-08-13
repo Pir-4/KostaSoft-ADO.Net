@@ -29,7 +29,7 @@ namespace KostaSoft.Controller
         #region Employee
         public void SaveChange(EmployeeCommand command) => model.SaveChange(command);
 
-        public void DeleteEmployee(int id) => model.Delete(id);
+        public void Delete(int id) => model.Delete(id);
 
         public void SaveNew(EmployeeCommand command) => model.SaveNew(command);
 

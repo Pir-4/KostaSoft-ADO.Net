@@ -214,7 +214,7 @@ namespace KostaSoft
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                Controller.DeleteEmployee(command.Id);
+                Controller.Delete(command.Id);
                 isNew = true;
             }
         }

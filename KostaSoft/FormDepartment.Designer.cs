@@ -118,6 +118,7 @@
             this.buttonDelete.TabIndex = 17;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
             // 
             // FormDepartment
             // 
