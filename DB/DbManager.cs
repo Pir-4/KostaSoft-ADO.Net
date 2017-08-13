@@ -13,6 +13,10 @@ namespace DB
 
         #region Departments
 
+        /// <summary>
+        /// Поучение всех отделов
+        /// </summary>
+        /// <returns></returns>
         public List<Department> GetDepartments()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Department");
@@ -22,6 +26,7 @@ namespace DB
 
             return result;
         }
+
         /// <summary>
         /// Обновление полей сотрудника
         /// </summary>
@@ -37,6 +42,7 @@ namespace DB
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
         }
+
         /// <summary>
         /// Вставка нового одела
         /// </summary>
@@ -84,6 +90,7 @@ namespace DB
                 {String.Format("Update Department Set  ParentDepartmentID = '{0}' Where ParentDepartmentID='{1}'", newParentDepartmentID, id)},
                 {String.Format("Delete From Department Where Id='{0}'", id)}
             };
+
             try
             {
                 _driver.Transaction(querys);
@@ -178,8 +185,6 @@ namespace DB
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
         }
-
-
         #endregion
 
     }
