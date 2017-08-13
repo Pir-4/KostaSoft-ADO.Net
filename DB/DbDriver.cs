@@ -62,6 +62,10 @@ namespace DB
             }
         }
 
+        /// <summary>
+        /// Выполнение транзакции в БД
+        /// </summary>
+        /// <param name="querys">Список запросов</param>
         public void Transaction(List<string> querys)
         {
             List<SqlCommand> commands = querys.Select(query => new SqlCommand(query, connect)).ToList();

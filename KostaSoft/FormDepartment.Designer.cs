@@ -35,8 +35,8 @@
             this.textBoxDepCode = new System.Windows.Forms.TextBox();
             this.labelDep = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.labelMessage = new System.Windows.Forms.Label();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // comboBoxDepNames
@@ -102,14 +102,6 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonSave_MouseClick);
             // 
-            // labelMessage
-            // 
-            this.labelMessage.AutoSize = true;
-            this.labelMessage.Location = new System.Drawing.Point(12, 158);
-            this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(0, 13);
-            this.labelMessage.TabIndex = 16;
-            // 
             // buttonDelete
             // 
             this.buttonDelete.Location = new System.Drawing.Point(111, 126);
@@ -120,13 +112,23 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelete_MouseClick);
             // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxMessage.Location = new System.Drawing.Point(13, 155);
+            this.textBoxMessage.Multiline = true;
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.ReadOnly = true;
+            this.textBoxMessage.Size = new System.Drawing.Size(319, 25);
+            this.textBoxMessage.TabIndex = 18;
+            // 
             // FormDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 180);
+            this.ClientSize = new System.Drawing.Size(344, 192);
+            this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.comboBoxDepNames);
             this.Controls.Add(this.label1);
@@ -151,7 +153,7 @@
         private System.Windows.Forms.TextBox textBoxDepCode;
         private System.Windows.Forms.Label labelDep;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Label labelMessage;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.TextBox textBoxMessage;
     }
 }

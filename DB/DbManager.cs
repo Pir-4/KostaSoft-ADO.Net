@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DB
 {
+    /// <summary>
+    /// Формирует и выполняет необходимы SQL запросы.
+    /// </summary>
     public class DbManager
     {
         private DbDriver _driver = new DbDriver();
@@ -28,7 +31,7 @@ namespace DB
         }
 
         /// <summary>
-        /// Обновление полей сотрудника
+        /// Обновление полей отдела
         /// </summary>
         /// <param name="id">идентификатор отдела</param>
         /// <param name="pars"> словарь где ключ-имя поля, значение-новое значение</param>
@@ -44,7 +47,7 @@ namespace DB
         }
 
         /// <summary>
-        /// Вставка нового одела
+        /// Вставка нового отдела
         /// </summary>
         /// <param name="pars">словарь где ключ-имя поля, значение-новое значение</param>
         /// <returns>успешнойсть операции</returns>
@@ -63,11 +66,16 @@ namespace DB
             return result != -1;
         }
 
+        /// <summary>
+        /// Удаление отдела и всех его потомков (транзакция)
+        /// </summary>
+        /// <param name="id">id удаляемого отдела</param>
         public void DeleteDepartmentsAndChildrens(string id)
         {
             List<string> querys = new List<string>
             {
                 {String.Format("Delete From Empoyee Where DepartmentID='{0}'", id)},
+                {String.Format("Delete From Department Where ParentDepartmentID='{0}'", id)},
                 {String.Format("Delete From Department where Id='{0}'", id)}
             };
             try
@@ -82,6 +90,11 @@ namespace DB
 
         }
 
+        /// <summary>
+        /// Удаление отдела и перемещение всех его потомков в другой отдел
+        /// </summary>
+        /// <param name="id">id удаляемого отдела</param>
+        /// <param name="newParentDepartmentID">id нового отдела</param>
         public void DeleteDepartmentsAndMoveChildrens(string id, string newParentDepartmentID)
         {
             List<string> querys = new List<string>
@@ -105,6 +118,7 @@ namespace DB
 
 
         #region Employee
+
         /// <summary>
         /// Получение списка сотрудников всей организации
         /// </summary>
@@ -163,6 +177,11 @@ namespace DB
             return result != -1;
         }
 
+        /// <summary>
+        /// Удаление сотрудника
+        /// </summary>
+        /// <param name="id"> id сотрудника</param>
+        /// <returns>результат операции</returns>
         public bool DeleteEmployee(int id)
         {
             string query = String.Format("Delete From Empoyee where ID={0}", id);
@@ -170,6 +189,11 @@ namespace DB
             return result != -1;
         }
 
+        /// <summary>
+        /// Вставка нового сотрудника
+        /// </summary>
+        /// <param name="pars">словарь где ключ-имя поля, значение-новое значение</param>
+        /// <returns>результат операции</returns>
         public bool InsertEmployee(Dictionary<string, string> pars)
         {
             string query = "Insert Into Empoyee ";

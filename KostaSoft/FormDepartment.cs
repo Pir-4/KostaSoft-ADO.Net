@@ -92,7 +92,7 @@ namespace KostaSoft
 
         private void buttonSave_MouseClick(object sender, MouseEventArgs e)
         {
-            this.labelMessage.Text = "";
+            this.textBoxMessage.Text = "";
 
             if (isDateCorrect())
             {
@@ -114,13 +114,13 @@ namespace KostaSoft
             }
             else
             {
-                this.labelMessage.Text = " Данные не сохранены. Некоторые поля введены неправильно.";
+                this.textBoxMessage.Text = " Данные не сохранены. Некоторые поля введены неправильно.";
             }
         }
 
         public void UpdateMessage(IModel model, DepartmentEventsArgs e)
         {
-            labelMessage.Text = e.Message;
+            textBoxMessage.Text = e.Message;
         }
 
         public void GetId(IModel model, DepartmentEventsArgs e)
