@@ -90,7 +90,7 @@ namespace KostaSoft
         {
 
             this.textBoxDepName.BackColor = String.IsNullOrEmpty(this.textBoxDepName.Text)
-                ? Color.Maroon : Color.White;
+                ? Color.Salmon : Color.White;
 
 
             return !String.IsNullOrEmpty(this.textBoxDepName.Text);

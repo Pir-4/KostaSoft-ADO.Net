@@ -159,26 +159,30 @@ namespace KostaSoft
         /// <returns></returns>
         private bool isDateCorrect()
         {
+            Color good = Color.White;
+            Color bad = Color.Salmon;
 
             this.comboBoxDepNames.BackColor = String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString())
-                ? Color.Maroon : Color.White;
+                ? bad : good;
 
             this.textBoxSurNameEmp.BackColor = String.IsNullOrEmpty(this.textBoxSurNameEmp.Text)
-                ? Color.Maroon : Color.White;
+                ? bad : good;
 
             this.textBoxFirstNameEmp.BackColor = String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text)
-                ? Color.Maroon : Color.White;
+                ? bad : good;
 
             this.textBoxPosition.BackColor = String.IsNullOrEmpty(this.textBoxPosition.Text)
-                ? Color.Maroon : Color.White;
+                ? bad : good;
 
             this.textBoxDob.BackColor = this.textBoxAge.Text.Equals(ERROR_AGE)
-                ? Color.Maroon : Color.White;
+                ? bad : good;
 
-            return !(String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString()) &&
-                                      String.IsNullOrEmpty(this.textBoxSurNameEmp.Text) &&
-                                      String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text) &&
-                                      String.IsNullOrEmpty(this.textBoxPosition.Text) && !this.textBoxAge.Text.Equals(ERROR_AGE));
+            return !String.IsNullOrEmpty(this.comboBoxDepNames.SelectedItem.ToString()) &&
+                          !String.IsNullOrEmpty(this.textBoxSurNameEmp.Text) &&
+                          !String.IsNullOrEmpty(this.textBoxFirstNameEmp.Text) &&
+                          !String.IsNullOrEmpty(this.textBoxPosition.Text) && !this.textBoxAge.Text.Equals(ERROR_AGE);
+
+            
         }
 
         private void buttonSave_MouseClick(object sender, MouseEventArgs e)
@@ -202,7 +206,6 @@ namespace KostaSoft
                     DateTimeStyles.None, out date);
                 command.DateOfBirth = date;
 
-                //TODO: исправить првоерку на неправильный ввод данных
                 if (isNew)
                 {
                     Controller.SaveNew(command);
