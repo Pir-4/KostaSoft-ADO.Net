@@ -82,6 +82,7 @@
             this.buttonDelAndMove.TabIndex = 20;
             this.buttonDelAndMove.Text = "Удалить и перместить";
             this.buttonDelAndMove.UseVisualStyleBackColor = true;
+            this.buttonDelAndMove.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDelAndMove_MouseClick);
             // 
             // FormDeleteDep
             // 

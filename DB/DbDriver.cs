@@ -62,6 +62,31 @@ namespace DB
             }
         }
 
+        public void Transaction(List<string> querys)
+        {
+            List<SqlCommand> commands = querys.Select(query => new SqlCommand(query, connect)).ToList();
+            SqlTransaction tx = null;
+            try
+            {
+                tx = connect.BeginTransaction();
+
+                //Включение команд втранзакцию
+                foreach (var command in commands)
+                    command.Transaction = tx;
+
+                //Выполнение команд
+                foreach (var command in commands)
+                    command.ExecuteNonQuery();
+            
+                tx.Commit();
+            }
+            catch (Exception e)
+            {
+                tx.Rollback();
+                Console.WriteLine(e);
+                throw e;
+            }
+        }
         public void Dispose()
         {
             connect.Dispose();

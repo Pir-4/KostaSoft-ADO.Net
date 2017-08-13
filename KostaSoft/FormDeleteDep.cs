@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KostaSoft.Controller;
+using KostaSoft.Model.Command;
 
 namespace KostaSoft
 {
@@ -20,11 +21,12 @@ namespace KostaSoft
             InitializeComponent();
         }
 
-        public FormDeleteDep(IController controller, List<string> deps, Action del) : this()
+        public FormDeleteDep(IController controller, List<string> deps, DepartmentCommand command, Action del) : this()
         {
             DepNameList = deps;
             Controller = controller;
             isDel = del;
+            Command = command;
         }
 
         private void FormDeleteDep_Load(object sender, EventArgs e)
@@ -37,11 +39,23 @@ namespace KostaSoft
 
         private List<string> DepNameList { get; set; }
         private IController Controller { get; set; }
+        private DepartmentCommand Command { get; set; }
 
 
         private void buttonDelAll_MouseClick(object sender, MouseEventArgs e)
         {
+            Command.ParentDepartmentName = null;
+            Controller.Delete(Command);
             isDel();
+            this.Close();
+        }
+
+        private void buttonDelAndMove_MouseClick(object sender, MouseEventArgs e)
+        {
+            Command.ParentDepartmentName = comboBoxDepNames.SelectedItem.ToString();
+            Controller.Delete(Command);
+            isDel();
+            this.Close();
         }
     }
 }

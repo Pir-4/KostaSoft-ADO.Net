@@ -41,6 +41,8 @@ namespace KostaSoft.Controller
 
         public void SaveNew(DepartmentCommand command) => model.SaveNew(command);
 
+        public void Delete(DepartmentCommand command) => model.Delete(command);
+
         #endregion
 
     }

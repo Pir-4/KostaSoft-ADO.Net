@@ -24,5 +24,6 @@ namespace KostaSoft.Model
 
         void SaveChange(DepartmentCommand command);
         void SaveNew(DepartmentCommand command);
+        void Delete(DepartmentCommand command);
     }
 }

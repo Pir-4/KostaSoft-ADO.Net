@@ -54,7 +54,7 @@ namespace KostaSoft.Model
             modelEmplHandlerId += new ModelEmplHandler<Model>(imo.GetId);
         }
 
-        public  void attach(IDepartmentObserver imo)
+        public void attach(IDepartmentObserver imo)
         {
             modelDeptHandlerMessage += new ModelDeptHandler<Model>(imo.UpdateMessage);
             modelDeptHandlerId += new ModelDeptHandler<Model>(imo.GetId);
@@ -77,7 +77,7 @@ namespace KostaSoft.Model
             bool result = GetDepartmentItem(name) || GetEmployeeItem(name);
         }
 
-        
+
 
         #region Employee
 
@@ -117,7 +117,7 @@ namespace KostaSoft.Model
             }
             finally
             {
-                modelEmplHandlerMassage.Invoke(this,employeeEventArgs);
+                modelEmplHandlerMassage.Invoke(this, employeeEventArgs);
                 UpdateTree();
             }
 
@@ -141,7 +141,7 @@ namespace KostaSoft.Model
                 modelEmplHandlerMassage.Invoke(this, employeeEventArgs);
                 UpdateTree();
             }
-            
+
         }
 
         public void SaveNew(EmployeeCommand command)
@@ -172,9 +172,9 @@ namespace KostaSoft.Model
                     employeeEventArgs.Id = ids[0];
                     modelEmplHandlerId.Invoke(this, employeeEventArgs);
                 }
-                
+
             }
-           
+
         }
 
         private Dictionary<string, string> GetParam(EmployeeCommand command)
@@ -236,10 +236,10 @@ namespace KostaSoft.Model
             }
             finally
             {
-                modelDeptHandlerMessage.Invoke(this,departmentEventsArgs);
+                modelDeptHandlerMessage.Invoke(this, departmentEventsArgs);
                 UpdateTree();
             }
-           
+
         }
 
         public void SaveNew(DepartmentCommand command)
@@ -269,11 +269,38 @@ namespace KostaSoft.Model
                     modelDeptHandlerId.Invoke(this, departmentEventsArgs);
                 }
             }
-                
-            
+
+
         }
 
+        public void Delete(DepartmentCommand command)
+        {
+            try
+            {
+                if (command.ParentDepartmentName == null)
+                {
+                   manager.DeleteDepartmentsAndChildrens(command.Id);
+                }
+                else
+                {
+                    Dictionary<string, string> pars = GetParam(command);
+                     manager.DeleteDepartmentsAndMoveChildrens(command.Id, pars["ParentDepartmentID"]);
+                }
 
+                departmentEventsArgs.Message = "Удалено.";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                departmentEventsArgs.Message = String.Format("Ошибка. {0}", e.Message);
+            }
+            finally
+            {
+                modelDeptHandlerMessage.Invoke(this, departmentEventsArgs);
+                UpdateTree();
+            }
+
+        }
 
         private Dictionary<string, string> GetParam(DepartmentCommand command)
         {

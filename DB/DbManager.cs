@@ -11,6 +11,8 @@ namespace DB
     {
         private DbDriver _driver = new DbDriver();
 
+        #region Departments
+
         public List<Department> GetDepartments()
         {
             DataTable dt = _driver.ExecuteReader("Select * From Department");
@@ -55,7 +57,47 @@ namespace DB
             return result != -1;
         }
 
+        public void DeleteDepartmentsAndChildrens(string id)
+        {
+            List<string> querys = new List<string>
+            {
+                {String.Format("Delete Empoyee where DepartmentID={0}", id)},
+                {String.Format("Delete Department where Id={0}", id)}
+            };
+            try
+            {
+                _driver.Transaction(querys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw e;
+            }
 
+        }
+
+        public void DeleteDepartmentsAndMoveChildrens(string id, string newParentDepartmentID)
+        {
+            List<string> querys = new List<string>
+            {
+                {String.Format("Update Empoyee Set  DepartmentID = {0}, where DepartmentID={1}", newParentDepartmentID, id)},
+                {String.Format("Update Department Set  ParentDepartmentID = {0}, where ParentDepartmentID={1}", newParentDepartmentID, id)},
+                {String.Format("Delete Department where Id={0}", id)}
+            };
+            try
+            {
+                _driver.Transaction(querys);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw e;
+            }
+        }
+        #endregion
+
+
+        #region Employee
         /// <summary>
         /// Получение списка сотрудников всей организации
         /// </summary>
@@ -136,5 +178,9 @@ namespace DB
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
         }
+
+
+        #endregion
+
     }
 }
