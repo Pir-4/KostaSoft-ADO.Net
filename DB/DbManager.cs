@@ -61,8 +61,8 @@ namespace DB
         {
             List<string> querys = new List<string>
             {
-                {String.Format("Delete Empoyee where DepartmentID={0}", id)},
-                {String.Format("Delete Department where Id={0}", id)}
+                {String.Format("Delete From Empoyee Where DepartmentID='{0}'", id)},
+                {String.Format("Delete From Department where Id='{0}'", id)}
             };
             try
             {
@@ -80,9 +80,9 @@ namespace DB
         {
             List<string> querys = new List<string>
             {
-                {String.Format("Update Empoyee Set  DepartmentID = {0}, where DepartmentID={1}", newParentDepartmentID, id)},
-                {String.Format("Update Department Set  ParentDepartmentID = {0}, where ParentDepartmentID={1}", newParentDepartmentID, id)},
-                {String.Format("Delete Department where Id={0}", id)}
+                {String.Format("Update Empoyee Set  DepartmentID = '{0}' Where DepartmentID='{1}'", newParentDepartmentID, id)},
+                {String.Format("Update Department Set  ParentDepartmentID = '{0}' Where ParentDepartmentID='{1}'", newParentDepartmentID, id)},
+                {String.Format("Delete From Department Where Id='{0}'", id)}
             };
             try
             {
@@ -158,7 +158,7 @@ namespace DB
 
         public bool DeleteEmployee(int id)
         {
-            string query = String.Format("Delete Empoyee where ID={0}", id);
+            string query = String.Format("Delete From Empoyee where ID={0}", id);
             int result = _driver.ExecuteNonQuery(query);
             return result != -1;
         }

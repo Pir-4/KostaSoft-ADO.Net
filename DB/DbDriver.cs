@@ -68,6 +68,7 @@ namespace DB
             SqlTransaction tx = null;
             try
             {
+                connect.Open();
                 tx = connect.BeginTransaction();
 
                 //Включение команд втранзакцию
@@ -77,7 +78,7 @@ namespace DB
                 //Выполнение команд
                 foreach (var command in commands)
                     command.ExecuteNonQuery();
-            
+
                 tx.Commit();
             }
             catch (Exception e)
@@ -85,6 +86,10 @@ namespace DB
                 tx.Rollback();
                 Console.WriteLine(e);
                 throw e;
+            }
+            finally
+            {
+                connect.Close();
             }
         }
         public void Dispose()
