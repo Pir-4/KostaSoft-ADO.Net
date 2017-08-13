@@ -46,7 +46,7 @@ namespace DB
         public string Name { get; set; }
 
         /// <summary>
-        /// Возращает Id элемента
+        /// Возращает Id элемента (реализация интерфейса)
         /// </summary>
         public string ItemId
         {
