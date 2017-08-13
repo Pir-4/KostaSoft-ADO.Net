@@ -32,5 +32,12 @@ namespace KostaSoft.Model.Observers
         /// <param name="model"></param>
         /// <param name="e"></param>
         void EmployeeEItem(IModel model, EmployeeEventArgs e);
+
+        /// <summary>
+        /// Обновляет информационное сообщение
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
+        void UpdateMessage(IModel model, UpdateTreeEventArgs e);
     }
 }

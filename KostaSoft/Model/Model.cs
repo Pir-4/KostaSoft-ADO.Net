@@ -22,6 +22,7 @@ namespace KostaSoft.Model
         EmployeeEventArgs employeeEventArgs = new EmployeeEventArgs();
 
         private event ModelUpdateHandler<Model> modelHedlerUpdateTree;
+        private event ModelUpdateHandler<Model> modelHedlerUpdateTreerMessage;
 
         private event ModelDeptHandler<Model> modelDeptHandler;
         private event ModelDeptHandler<Model> modelDeptHandlerMessage;
@@ -46,6 +47,8 @@ namespace KostaSoft.Model
             modelHedlerUpdateTree += new ModelUpdateHandler<Model>(imo.UpdateTree);
             modelDeptHandler += new ModelDeptHandler<Model>(imo.DepartmentItem);
             modelEmplHandler += new ModelEmplHandler<Model>(imo.EmployeeEItem);
+
+            modelHedlerUpdateTreerMessage += new ModelUpdateHandler<Model>(imo.UpdateMessage);
         }
 
         public void attach(IEmployeeObserver imo)
@@ -64,15 +67,25 @@ namespace KostaSoft.Model
         /// </summary>
         public void UpdateTree()
         {
-            Departments = manager.GetDepartments();
-            Employees = manager.GetEmployee();
+            try
+            {
+                Departments = manager.GetDepartments();
+                Employees = manager.GetEmployee();
 
-            builder.Sotring(Departments.Cast<IOrgItem>().ToList());
-            builder.Sotring(Employees.Cast<IOrgItem>().ToList());
+                builder.Sotring(Departments.Cast<IOrgItem>().ToList());
+                builder.Sotring(Employees.Cast<IOrgItem>().ToList());
 
-            updateTreeEventArgs.Root = builder.Root;
-            updateTreeEventArgs.DepNameList = DepartmentNames;
-            modelHedlerUpdateTree.Invoke(this, updateTreeEventArgs);
+                updateTreeEventArgs.Root = builder.Root;
+                updateTreeEventArgs.DepNameList = DepartmentNames;
+                modelHedlerUpdateTree.Invoke(this, updateTreeEventArgs);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                updateTreeEventArgs.Message = String.Format("Ошибка. {0}", e.Message);
+                modelHedlerUpdateTreerMessage.Invoke(this, updateTreeEventArgs);
+            }
+           
         }
 
         /// <summary>
@@ -81,7 +94,21 @@ namespace KostaSoft.Model
         /// <param name="name"></param>
         public void OpenItem(string name)
         {
-            bool result = GetDepartmentItem(name) || GetEmployeeItem(name);
+            try
+            {
+                bool result = GetDepartmentItem(name) || GetEmployeeItem(name);
+                updateTreeEventArgs.Message = result ? "" : "Объект не найден";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                updateTreeEventArgs.Message = String.Format("Ошибка. {0}", e.Message);
+                
+            }
+            finally
+            {
+                modelHedlerUpdateTreerMessage.Invoke(this, updateTreeEventArgs);
+            }
         }
 
 
@@ -109,7 +136,7 @@ namespace KostaSoft.Model
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                throw e;
             }
             return false;
 
@@ -250,7 +277,7 @@ namespace KostaSoft.Model
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw;
+                throw e;
             }
 
             return false;

@@ -21,5 +21,10 @@ namespace KostaSoft.Model.EventAgrs
         /// Список отедлов
         /// </summary>
         public List<string> DepNameList { get; set; }
+
+        /// <summary>
+        /// Информационное сообщение
+        /// </summary>
+        public string Message { get; set; }
     }
 }

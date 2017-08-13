@@ -70,6 +70,11 @@ namespace KostaSoft
             return newNode;
         }
 
+        public void UpdateMessage(IModel model, UpdateTreeEventArgs e)
+        {
+            this.textBoxMessage.Text = e.Message;
+        }
+
         /// <summary>
         /// Отображение свойств отдела
         /// </summary>

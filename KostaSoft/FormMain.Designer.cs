@@ -32,6 +32,7 @@
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonNewEmp = new System.Windows.Forms.Button();
             this.buttonNewDep = new System.Windows.Forms.Button();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // OrgTree
@@ -72,12 +73,23 @@
             this.buttonNewDep.UseVisualStyleBackColor = true;
             this.buttonNewDep.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonNewDep_MouseClick);
             // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxMessage.Location = new System.Drawing.Point(3, 231);
+            this.textBoxMessage.Multiline = true;
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.ReadOnly = true;
+            this.textBoxMessage.Size = new System.Drawing.Size(372, 41);
+            this.textBoxMessage.TabIndex = 18;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(377, 230);
+            this.ClientSize = new System.Drawing.Size(377, 276);
+            this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.buttonNewDep);
             this.Controls.Add(this.buttonNewEmp);
             this.Controls.Add(this.buttonOpen);
@@ -86,6 +98,7 @@
             this.Text = "Фирма";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,6 +108,7 @@
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.Button buttonNewEmp;
         private System.Windows.Forms.Button buttonNewDep;
+        private System.Windows.Forms.TextBox textBoxMessage;
     }
 }
 
