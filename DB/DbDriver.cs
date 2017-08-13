@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DB
 {
+    /// <summary>
+    /// Производит непосредственные запросы к БД
+    /// </summary>
     public class DbDriver : IDisposable
     {
         private SqlConnection connect;
@@ -19,6 +22,11 @@ namespace DB
                                   "Integrated Security=SSPI;Pooling=False";
         }
 
+        /// <summary>
+        /// Извлечение данных из БД
+        /// </summary>
+        /// <param name="query">запрос</param>
+        /// <returns>результат</returns>
         public DataTable ExecuteReader(string query)
         {
             try
@@ -42,6 +50,11 @@ namespace DB
             }
         }
 
+        /// <summary>
+        /// Запрос не требующий возрата значений из БД
+        /// </summary>
+        /// <param name="query">запрос</param>
+        /// <returns>количество измененных строк</returns>
         public int ExecuteNonQuery(string query)
         {
             try
@@ -96,6 +109,10 @@ namespace DB
                 connect.Close();
             }
         }
+
+        /// <summary>
+        /// Уничтожение объекта
+        /// </summary>
         public void Dispose()
         {
             connect.Dispose();

@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace KostaSoft.Model.Command
 {
+    /// <summary>
+    /// Передача парметров отдела из формы в модель
+    /// </summary>
     public class DepartmentCommand
     {
         /// <summary>
-        /// идентификатор подразделения
+        /// идентификатор отдела
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// Имя родительского подразделения
+        /// Имя родительского отдела
         /// </summary>
         public string ParentDepartmentName { get; set; }
 

@@ -7,10 +7,13 @@ using KostaSoft.Model.EventAgrs;
 
 namespace KostaSoft.Model.Observers
 {
+    /// <summary>
+    /// Интерфейс для работа с формой по обновлению парметров сотрудника
+    /// </summary>
     public interface IEmployeeObserver
     {
         /// <summary>
-        /// Обновляет сообщение о результате дейcndbz
+        /// Обновляет информационное сообщение
         /// </summary>
         /// <param name="model"></param>
         /// <param name="e"></param>

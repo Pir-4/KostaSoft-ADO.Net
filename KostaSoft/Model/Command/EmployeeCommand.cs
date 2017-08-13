@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace KostaSoft.Model.Command
 {
+    /// <summary>
+    /// Передача парметров сотрудника из формы в модель
+    /// </summary>
     public class EmployeeCommand
     {
         /// <summary>
@@ -53,6 +56,9 @@ namespace KostaSoft.Model.Command
         /// </summary>
         public string Position { get; set; }
 
+        /// <summary>
+        /// Полное имя сотрудника
+        /// </summary>
         public string Name
         {
             get { return String.Join(" ", new List<string> { SurName, FirstName, Patronymic }); }

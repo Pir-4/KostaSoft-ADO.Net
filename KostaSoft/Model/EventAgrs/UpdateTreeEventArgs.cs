@@ -7,6 +7,9 @@ using DB;
 
 namespace KostaSoft.Model.EventAgrs
 {
+    /// <summary>
+    /// Передача параметров в главную вьюху
+    /// </summary>
     public class UpdateTreeEventArgs : EventArgs
     {
         /// <summary>

@@ -30,6 +30,16 @@ namespace KostaSoft
 
         public IController Controller { get; set; }
 
+        /// <summary>
+        /// Список отделов ораганизации
+        /// </summary>
+        private List<string> DepartementNames { get; set; }
+
+        /// <summary>
+        /// Обновление структуры организации
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void UpdateTree(IModel model, UpdateTreeEventArgs e)
         {
             this.OrgTree.Nodes.Clear();
@@ -60,7 +70,11 @@ namespace KostaSoft
             return newNode;
         }
 
-
+        /// <summary>
+        /// Отображение свойств отдела
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void DepartmentItem(IModel model, DepartmentEventsArgs e)
         {
             FormDepartment form = new FormDepartment(Controller)
@@ -73,6 +87,11 @@ namespace KostaSoft
 
         }
 
+        /// <summary>
+        /// Отображение свойств сотрудника
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void EmployeeEItem(IModel model, EmployeeEventArgs e)
         {
             FormEmployee form = new FormEmployee(Controller)
@@ -84,18 +103,28 @@ namespace KostaSoft
             form.Show();
         }
 
-        private List<string> DepartementNames { get; set; }
+        
 
         private void OrgTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Отрытие информации о отделе или сотруднике
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOpen_Click(object sender, EventArgs e)
         {
-            Controller.GetInfoItem(this.OrgTree.SelectedNode.Text);
+            Controller.OpenItem(this.OrgTree.SelectedNode.Text);
         }
 
+        /// <summary>
+        /// Создание нового сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNewEmp_Click(object sender, EventArgs e)
         {
             FormEmployee from = new FormEmployee(Controller, true)
@@ -104,7 +133,11 @@ namespace KostaSoft
             };
             from.Show();
         }
-
+        /// <summary>
+        /// Создание нового отдела
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNewDep_MouseClick(object sender, MouseEventArgs e)
         {
             FormDepartment from = new FormDepartment(Controller, true)

@@ -11,10 +11,13 @@ namespace DB
     /// </summary>
     public interface IOrgItem : IEquatable<IOrgItem>
     {
+        /// <summary>
+        /// Идентификатор объекта
+        /// </summary>
         string ItemId { get; }
 
         /// <summary>
-        /// ID родительского депортамента
+        /// ID родительского отдела
         /// </summary>
         string ParentDepartmentID { get;}
 

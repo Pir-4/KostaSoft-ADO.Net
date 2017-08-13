@@ -75,21 +75,35 @@ namespace DB
         /// </summary>
         public string Position { get; set; }
 
+        /// <summary>
+        /// Идентификатор отдела
+        /// </summary>
         public string ParentDepartmentID
         {
             get { return DepartmentID; }
         }
 
+        /// <summary>
+        /// Полное имя сотрудника
+        /// </summary>
         public string Name
         {
             get { return String.Join(" ", new List<string> { SurName, FirstName, Patronymic }); }
         }
 
+        /// <summary>
+        /// Идентификатор сотрудника
+        /// </summary>
         public string ItemId
         {
             get { return Id.ToString(); }
         }
 
+        /// <summary>
+        /// Сравнение объектов
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(IOrgItem other)
         {
             if (other is Employee)

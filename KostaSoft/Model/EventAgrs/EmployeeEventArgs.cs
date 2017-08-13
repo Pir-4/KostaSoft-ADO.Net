@@ -7,6 +7,9 @@ using DB;
 
 namespace KostaSoft.Model.EventAgrs
 {
+    /// <summary>
+    /// Передача парметров сотрудника из модеи во вьюху
+    /// </summary>
     public class EmployeeEventArgs : EventArgs
     {
         /// <summary>
@@ -14,7 +17,14 @@ namespace KostaSoft.Model.EventAgrs
         /// </summary>
         public Employee DisplayEmp { get; set; }
 
+        /// <summary>
+        /// Идентификатор созданого сотрудника
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Информационное сообщение
+        /// </summary>
         public string Message { get; set; }
     }
 }

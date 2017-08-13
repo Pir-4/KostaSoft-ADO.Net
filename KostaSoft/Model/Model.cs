@@ -59,6 +59,9 @@ namespace KostaSoft.Model
             modelDeptHandlerMessage += new ModelDeptHandler<Model>(imo.UpdateMessage);
             modelDeptHandlerId += new ModelDeptHandler<Model>(imo.GetId);
         }
+        /// <summary>
+        /// Обновление структуры организации
+        /// </summary>
         public void UpdateTree()
         {
             Departments = manager.GetDepartments();
@@ -72,7 +75,11 @@ namespace KostaSoft.Model
             modelHedlerUpdateTree.Invoke(this, updateTreeEventArgs);
         }
 
-        public void GetInfoItem(string name)
+        /// <summary>
+        /// Запрос на получение информации об элемента организации
+        /// </summary>
+        /// <param name="name"></param>
+        public void OpenItem(string name)
         {
             bool result = GetDepartmentItem(name) || GetEmployeeItem(name);
         }
@@ -81,6 +88,11 @@ namespace KostaSoft.Model
 
         #region Employee
 
+        /// <summary>
+        /// Получение данных о сотруднике
+        /// </summary>
+        /// <param name="name"> полное имя сотрудника</param>
+        /// <returns></returns>
         private bool GetEmployeeItem(string name)
         {
             try
@@ -103,6 +115,10 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Сохранение измененных параметров у сотрудника
+        /// </summary>
+        /// <param name="command"></param>
         public void SaveChange(EmployeeCommand command)
         {
             try
@@ -123,6 +139,10 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Удаление сотрудника
+        /// </summary>
+        /// <param name="id">идентификатор сотрудника</param>
         public void Delete(int id)
         {
 
@@ -144,6 +164,10 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// СОхранение нового сотрудника
+        /// </summary>
+        /// <param name="command"></param>
         public void SaveNew(EmployeeCommand command)
         {
             try
@@ -177,6 +201,11 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Получение словаря с необходимыми полями для работы с БД
+        /// </summary>
+        /// <param name="command">Объект для преобразования</param>
+        /// <returns>словарь</returns>
         private Dictionary<string, string> GetParam(EmployeeCommand command)
         {
             List<Department> dep = Departments.Where(item => item.Name.Equals(command.DepartmentName)).ToList();
@@ -200,6 +229,11 @@ namespace KostaSoft.Model
 
         #region Departament
 
+        /// <summary>
+        /// Получение информации об отделе
+        /// </summary>
+        /// <param name="name">имя отдела</param>
+        /// <returns></returns>
         private bool GetDepartmentItem(string name)
         {
             try
@@ -222,6 +256,10 @@ namespace KostaSoft.Model
             return false;
         }
 
+        /// <summary>
+        /// Сохранение параметров у отдела
+        /// </summary>
+        /// <param name="command"></param>
         public void SaveChange(DepartmentCommand command)
         {
             try
@@ -242,6 +280,10 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Сохранение вновь созданного отдела
+        /// </summary>
+        /// <param name="command"></param>
         public void SaveNew(DepartmentCommand command)
         {
             try
@@ -273,6 +315,10 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Удаление отдела
+        /// </summary>
+        /// <param name="command"></param>
         public void Delete(DepartmentCommand command)
         {
             try
@@ -302,6 +348,11 @@ namespace KostaSoft.Model
 
         }
 
+        /// <summary>
+        /// Получение словаря с необходимыми полями для работы с БД
+        /// </summary>
+        /// <param name="command">Объект для преобразования</param>
+        /// <returns>словарь</returns>
         private Dictionary<string, string> GetParam(DepartmentCommand command)
         {
             Dictionary<string, string> result = new Dictionary<string, string>()
@@ -317,8 +368,7 @@ namespace KostaSoft.Model
             }
             return result;
         }
-
-
+        
         #endregion
 
 

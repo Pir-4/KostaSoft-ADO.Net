@@ -15,8 +15,7 @@ namespace KostaSoft.Model
         void attach(IDepartmentObserver imo);
 
         void UpdateTree();
-
-        void GetInfoItem(string name);
+        void OpenItem(string name);
 
         void SaveChange(EmployeeCommand command);
         void Delete(int id);

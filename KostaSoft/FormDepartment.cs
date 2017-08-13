@@ -58,7 +58,9 @@ namespace KostaSoft
                     buttonDelete.Enabled = false;
             }
         }
-
+        /// <summary>
+        /// Инициализация полей свойствами отдела
+        /// </summary>
         private void InitOldDep()
         {
             this.Text = DepEvent.DisplayDep.Name;
@@ -80,6 +82,10 @@ namespace KostaSoft
 
         private IController Controller { get; set; }
 
+        /// <summary>
+        /// Определение корректности введенных данных
+        /// </summary>
+        /// <returns></returns>
         private bool isDateCorrect()
         {
 
@@ -118,16 +124,26 @@ namespace KostaSoft
             }
         }
 
+        /// <summary>
+        /// Обновление информационного сообщение
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void UpdateMessage(IModel model, DepartmentEventsArgs e)
         {
             textBoxMessage.Text = e.Message;
         }
 
+        /// <summary>
+        /// Получение id для созданого отдела
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void GetId(IModel model, DepartmentEventsArgs e)
         {
             command.Id = e.Id;
         }
-
+ 
         private void buttonDelete_MouseClick(object sender, MouseEventArgs e)
         {
             FormDeleteDep from =new FormDeleteDep(Controller, DepNameList, command, () => isNew = true);

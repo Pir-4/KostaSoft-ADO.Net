@@ -24,7 +24,7 @@ namespace KostaSoft.Model
         /// <summary>
         /// Функция сортировки элементов в дерево
         /// </summary>
-        /// <param name="input">списко эементов, которые необходимо отсортировать</param>
+        /// <param name="input">списко элементов, которые необходимо отсортировать</param>
         public void Sotring(List<IOrgItem> input)
         {
             List<IOrgItem> excluded = new List<IOrgItem>();
@@ -86,7 +86,9 @@ namespace KostaSoft.Model
         }
 
     }
-
+    /// <summary>
+    /// Объект для построения дерева
+    /// </summary>
     public class TreeItem
     {
         public TreeItem(IOrgItem value, TreeItem parent = null)
@@ -103,7 +105,12 @@ namespace KostaSoft.Model
         {
             get { return Value.Name; }
         }
-
+        
+        /// <summary>
+        /// Содержится ли искомый элемент в потомках текущего
+        /// </summary>
+        /// <param name="org">Искомый элемент</param>
+        /// <returns></returns>
         public bool ContainsOrgItem(IOrgItem org)
         {
             if (Children != null)

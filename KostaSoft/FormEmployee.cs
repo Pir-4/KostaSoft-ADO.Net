@@ -58,6 +58,9 @@ namespace KostaSoft
             }
         }
 
+        /// <summary>
+        /// Инифиализация полей свойствами сотрудника
+        /// </summary>
         private void InitOldEmp()
         {
             Employee emp = EmployeeEvent.DisplayEmp;
@@ -88,7 +91,11 @@ namespace KostaSoft
 
         private IController Controller { get; set; }
 
-
+        /// <summary>
+        /// Вычесление возроста сотрудника
+        /// </summary>
+        /// <param name="dateOfBirth">Дата рождения</param>
+        /// <returns>возраст сотрудника</returns>
         private string Age(DateTime dateOfBirth)
         {
 
@@ -146,6 +153,10 @@ namespace KostaSoft
 
         }
 
+        /// <summary>
+        /// Определение корректности введенных данных
+        /// </summary>
+        /// <returns></returns>
         private bool isDateCorrect()
         {
 
@@ -219,11 +230,21 @@ namespace KostaSoft
             }
         }
 
+        /// <summary>
+        /// Обновление информационного сообщения
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void UpdateMassage(IModel model, EmployeeEventArgs e)
         {
             this.textBoxMessage.Text = e.Message;            
         }
 
+        /// <summary>
+        /// Получение id для созданного сотрудника
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="e"></param>
         public void GetId(IModel model, EmployeeEventArgs e)
         { 
             command.Id = e.Id;

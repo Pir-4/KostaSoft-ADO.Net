@@ -9,6 +9,9 @@ using KostaSoft.Model.Observers;
 
 namespace KostaSoft.Controller
 {
+    /// <summary>
+    /// Передает действия с форма в модель
+    /// </summary>
     public class Controller : IController
     {
         private IModel model;
@@ -18,15 +21,18 @@ namespace KostaSoft.Controller
             this.model = model;
         }
 
+        #region attach
         public void attach(IEmployeeObserver imo) => model.attach(imo);
 
         public void attach(IDepartmentObserver imo) => model.attach(imo);
+        #endregion
+
 
         public void UpdateTree() => model.UpdateTree();
-
-        public void GetInfoItem(string name) => model.GetInfoItem(name);
+        public void OpenItem(string name) => model.OpenItem(name);
 
         #region Employee
+
         public void SaveChange(EmployeeCommand command) => model.SaveChange(command);
 
         public void Delete(int id) => model.Delete(id);

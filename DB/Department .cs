@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DB
 {
     /// <summary>
-    /// Подражделение
+    /// Отдел
     /// </summary>
     public class Department : IOrgItem
     {
@@ -26,12 +26,12 @@ namespace DB
         }
 
         /// <summary>
-        /// идентификатор подразделения
+        /// идентификатор отдела
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// идентификатор родительского подразделения
+        /// идентификатор родительского отдела
         /// </summary>
         public string ParentDepartmentID { get; set; }
 
@@ -41,15 +41,23 @@ namespace DB
         public string Code { get; set; }
 
         /// <summary>
-        /// наименование
+        /// Имя отдела
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Возращает Id элемента
+        /// </summary>
         public string ItemId
         {
             get { return Id; }
         }
 
+        /// <summary>
+        /// Сравнение объектов
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(IOrgItem other)
         {
             if (other is Department)

@@ -3,13 +3,16 @@ using KostaSoft.Model.Observers;
 
 namespace KostaSoft.Controller
 {
+    /// <summary>
+    /// Интерфейс контроллера
+    /// </summary>
     public interface IController
     {
         void attach(IEmployeeObserver imo);
         void attach(IDepartmentObserver imo);
 
         void UpdateTree();
-        void GetInfoItem(string name);
+        void OpenItem(string name);
 
         void SaveChange(EmployeeCommand command);
         void Delete(int id);
