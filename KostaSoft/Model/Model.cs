@@ -124,10 +124,10 @@ namespace KostaSoft.Model
         {
             try
             {
-                List<Employee> emp = Employees.Where(item => item.Name.Equals(name)).ToList();
-                if (emp.Count > 0)
+                Employee emp = Employees.FirstOrDefault(item => item.Name.Equals(name));
+                if (emp != null)
                 {
-                    employeeEventArgs.DisplayEmp = emp[0];
+                    employeeEventArgs.DisplayEmp = emp;
                     modelEmplHandler(this, employeeEventArgs);
                     return true;
                 }
@@ -235,11 +235,11 @@ namespace KostaSoft.Model
         /// <returns>словарь</returns>
         private Dictionary<string, string> GetParam(EmployeeCommand command)
         {
-            List<Department> dep = Departments.Where(item => item.Name.Equals(command.DepartmentName)).ToList();
+            Department dep = Departments.First(item => item.Name.Equals(command.DepartmentName));
 
             return new Dictionary<string, string>()
             {
-                { "DepartmentID", dep[0].Id},
+                { "DepartmentID", dep.Id},
 
                 { "SurName", command.SurName},
                 { "FirstName", command.FirstName},
@@ -265,11 +265,11 @@ namespace KostaSoft.Model
         {
             try
             {
-                List<Department> dep = Departments.Where(item => item.Name.Equals(name)).ToList();
+                Department dep = Departments.FirstOrDefault(item => item.Name.Equals(name));
 
-                if (dep.Count > 0)
+                if (dep != null)
                 {
-                    departmentEventsArgs.DisplayDep = dep[0];
+                    departmentEventsArgs.DisplayDep = dep;
                     modelDeptHandler(this, departmentEventsArgs);
                     return true;
                 }
@@ -390,8 +390,8 @@ namespace KostaSoft.Model
 
             if (command.ParentDepartmentName != null)
             {
-                List<Department> dep = Departments.Where(item => item.Name.Equals(command.ParentDepartmentName)).ToList();
-                result.Add("ParentDepartmentID", dep[0].Id);
+                Department dep = Departments.First(item => item.Name.Equals(command.ParentDepartmentName));
+                result.Add("ParentDepartmentID", dep.Id);
             }
             return result;
         }
